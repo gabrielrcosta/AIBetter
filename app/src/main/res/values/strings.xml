@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">FinalProjectAIBetter</string>
+    <string name="recent">Recent</string>
+    <string name="image_recent_receivers">image recent receivers</string>
+    <string name="recent_transfers">Recent Transfers</string>
+    <string name="logo">Logo</string>
+    <string name="balance_page_icon">Balance Page Icon</string>
+    <string name="cards_icon">cards icon</string>
+    <string name="transfers_icon">Transfers Icon</string>
+    <string name="products_icon">products icon</string>
+    <string name="settings_icon">Settings Icon</string>
+    <string name="balance">Balance</string>
+    <string name="_1000">1000</string>
+    <string name="currency">€</string>
+</resources>
