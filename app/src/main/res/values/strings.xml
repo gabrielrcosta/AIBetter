@@ -12,4 +12,8 @@
     <string name="balance">Balance</string>
     <string name="_1000">1000</string>
     <string name="currency">€</string>
+    <string name="closing_arrow_back_to_main_menu">Closing arrow back to main menu</string>
+    <string name="how_much_text">How much would you like to transfer?</string>
+    <string name="balance_text">Your balance is: €</string>
+    <string name="amount_hint">€ 0.00</string>
 </resources>
