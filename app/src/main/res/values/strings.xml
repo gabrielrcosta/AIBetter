@@ -16,4 +16,6 @@
     <string name="how_much_text">How much would you like to transfer?</string>
     <string name="balance_text">Your balance is: €</string>
     <string name="amount_hint">€ 0.00</string>
+    <string name="cards_title">Cards</string>
+    <string name="card_image">card image</string>
 </resources>
