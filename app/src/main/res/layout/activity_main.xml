@@ -10,8 +10,12 @@
 
     <EditText
         android:id="@+id/reg_number"
-        android:layout_width="60dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
+        android:hint="user_id"
+        android:textAlignment="center"
+        android:textColorHint="@color/gray"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/password_editable"
         app:layout_constraintStart_toStartOf="@+id/password_editable"
         app:layout_constraintBottom_toTopOf="@id/password_editable"
@@ -19,8 +23,12 @@
 
     <EditText
         android:id="@+id/password_editable"
-        android:layout_width="60dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
+        android:hint="password"
+        android:textAlignment="center"
+        android:textColorHint="@color/gray"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="@+id/button"
         app:layout_constraintStart_toStartOf="@+id/button"
@@ -31,6 +39,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LogIn"
+        android:textAlignment="center"
+        android:textColorHint="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
