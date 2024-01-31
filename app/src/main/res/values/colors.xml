@@ -5,4 +5,5 @@
     <color name="purple">#66369D</color>
     <color name="dark_purple">#4d004d</color>
     <color name="even_darker_purple">#1a001a</color>
+    <color name="gray">#BABFBFBF</color>
 </resources>
