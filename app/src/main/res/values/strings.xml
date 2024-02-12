@@ -21,4 +21,6 @@
     <string name="card_holder_example">Gabriel R Costa</string>
     <string name="encrypted_code">**** **** ****</string>
     <string name="last_digits_card_string">1234</string>
+    <string name="title_products">Products</string>
+    <string name="confirmation_arrow">Confirmation Arrow</string>
 </resources>
