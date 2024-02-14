@@ -23,4 +23,12 @@
     <string name="last_digits_card_string">1234</string>
     <string name="title_products">Products</string>
     <string name="confirmation_arrow">Confirmation Arrow</string>
+    <string name="sequence_of_several_icons">Sequence of several icons</string>
+    <string name="current_account">Current Account</string>
+    <string name="borrow">Borrow</string>
+    <string name="credit_card">Credit Card</string>
+    <string name="mortgage">Mortgage</string>
+    <string name="savings">Savings</string>
+    <string name="insurance">Insurance</string>
+    <string name="my_applications_button">My Applications</string>
 </resources>
