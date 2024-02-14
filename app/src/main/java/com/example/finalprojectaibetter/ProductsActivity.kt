@@ -27,7 +27,7 @@ class ProductsActivity : AppCompatActivity() {
             navigateTo(CardManagerActivity::class.java)
         }
     }
-    }
+}
 
     private fun Context.navigateTo(destination: Class<*>) {
         val intent = Intent(this, destination)

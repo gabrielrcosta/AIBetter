@@ -17,8 +17,6 @@ class TransferActivity : AppCompatActivity() {
         val transferButton: ImageView = findViewById(R.id.tranfers_icon)
         val cardsButton: ImageView = findViewById(R.id.cards_icon)
 
-
-
         closeButton.setOnClickListener {
             navigateTo(MainScreenActivity::class.java)
         }
