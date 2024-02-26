@@ -21,14 +21,26 @@
 
     <ImageView
         android:id="@+id/card_view"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="350dp"
         android:layout_height="220dp"
         android:layout_marginTop="10dp"
         android:contentDescription="@string/card_image"
-        android:src="@drawable/card_app_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/card_sample"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <ImageView
+        android:id="@+id/logo_card"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="19dp"
+        android:src="@drawable/aib_logo_white"
+        android:layout_marginHorizontal="29dp"
+        app:layout_constraintEnd_toEndOf="@+id/card_view"
+        app:layout_constraintTop_toTopOf="@+id/card_view" />
 
     <TextView
         android:id="@+id/card_holder_name"
@@ -59,7 +71,7 @@
         app:layout_constraintHorizontal_bias="0.184"
         app:layout_constraintStart_toStartOf="@+id/card_view"
         app:layout_constraintTop_toTopOf="@+id/card_view"
-        app:layout_constraintVertical_bias="0.724" />
+        app:layout_constraintVertical_bias="0.775" />
 
     <TextView
         android:id="@+id/last_digits_card"
@@ -73,62 +85,63 @@
         app:layout_constraintStart_toEndOf="@+id/encrypted_digits_card"
         app:layout_constraintTop_toTopOf="@+id/encrypted_digits_card" />
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/frozen_card_text"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Your Card is Frozen"
+        android:textColor="@color/gray"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/freeze_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_view" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/freeze_card"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="freeze my card"
+        app:layout_constraintBottom_toTopOf="@id/show_pin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/show_pin"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Show my PIN"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/cancel_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/freeze_card"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Freeze my Card"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/cancel_card"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Cancel My Card"
         android:textAlignment="center"
-        android:textSize="26sp"
         android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/replace_card"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/show_pin"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Show my PIN"
-        android:textAlignment="center"
-        android:textSize="26sp"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/freeze_card" />
-
-    <TextView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/replace_card"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Cancel/Replace my Card"
-        android:textAlignment="center"
-        android:textSize="26sp"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Replace My Card"
         android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/show_pin" />
-
-    <TextView
-        android:id="@+id/damaged_card"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Replace Damaged Card"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/replace_card" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -183,6 +196,92 @@
 
     </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/overlay_layout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#AA000000"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/even_darker_purple"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/check_image"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/twotone_check_circle_24"
+                android:contentDescription="Confirmation Icon" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                style="@style/Widget.MaterialComponents.Button"
+                android:text="New card requested successfully!"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/pin_overlay_layout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#AA000000"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:background="@color/even_darker_purple"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/pin_shown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="1234"
+                android:visibility="invisible"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="30sp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/reveal_pin_button"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                style="@style/Widget.MaterialComponents.Button"
+                android:text="Reveal Pin"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
