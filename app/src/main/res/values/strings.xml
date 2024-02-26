@@ -31,4 +31,5 @@
     <string name="savings">Savings</string>
     <string name="insurance">Insurance</string>
     <string name="my_applications_button">My Applications</string>
+    <string name="settings_head">Settings</string>
 </resources>
