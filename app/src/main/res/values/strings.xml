@@ -32,4 +32,9 @@
     <string name="insurance">Insurance</string>
     <string name="my_applications_button">My Applications</string>
     <string name="settings_head">Settings</string>
+    <string name="sending_amount">You are sending €%1$s</string>
+    <string name="sent_amount_to">You sent €%1$s to %2$s</string>
+    <string name="add_contact_buttom">add contact buttom</string>
+    <string name="contacts">Contacts</string>
+    <string name="recent_tranfers">Recent Tranfers</string>
 </resources>
