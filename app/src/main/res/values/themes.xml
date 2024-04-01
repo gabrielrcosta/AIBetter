@@ -1,8 +1,8 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.FinalProjectAIBetter" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <item name="colorPrimary">@color/dark_purple</item>
+        <item name="colorPrimary">@color/african_violet</item>
     </style>
 
     <style name="Theme.FinalProjectAIBetter" parent="Base.Theme.FinalProjectAIBetter" />
