@@ -12,7 +12,7 @@
         android:id="@+id/main_logo"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:contentDescription="@string/logo"
         android:src="@drawable/aib_logo_white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,53 +21,131 @@
 
     <TextView
         android:id="@+id/balance_text"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/balance"
+        android:layout_marginTop="20dp"
         android:textColor="@color/white"
+        android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/main_logo"
-        app:layout_constraintStart_toStartOf="@+id/main_logo"
-        app:layout_constraintTop_toBottomOf="@+id/main_logo" />
-
-    <TextView
-        android:id="@+id/currency"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/currency"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toStartOf="@+id/balance_value"
-        app:layout_constraintStart_toStartOf="@+id/balance_text"
-        app:layout_constraintTop_toBottomOf="@+id/balance_text" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_logo" />
 
     <TextView
         android:id="@+id/balance_value"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/_1000"
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintStart_toEndOf="@id/currency"
-        app:layout_constraintEnd_toEndOf="@+id/balance_text"
-        app:layout_constraintTop_toBottomOf="@+id/balance_text" />
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/balance_text" />
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/balance_value">
 
-        <TextView
-            android:id="@+id/favorites_text"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Recent Transactions"
-            android:textColor="@color/white"/>
+            android:layout_height="wrap_content">
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_for_nothing"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/even_darker_purple"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/recent_transactions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/recent_tranfers"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_for_nothing"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView1"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:backgroundTint="@color/even_darker_purple"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recent_transactions">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_recent_transfers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/add_contact"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:text="Add a Contact      "
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView1" />
+
+            <ImageView
+                android:id="@+id/add_contact_button"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:src="@drawable/add_circle_outline"
+                android:layout_marginTop="5dp"
+                app:layout_constraintTop_toTopOf="@id/add_contact"
+                app:layout_constraintTop_toBottomOf="@+id/add_contact"
+                app:layout_constraintEnd_toEndOf="@id/add_contact"
+                android:contentDescription="@string/add_contact_buttom" />
+
+            <TextView
+                android:id="@+id/contacts_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/contacts"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_contact_button"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view_contacts"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:backgroundTint="@color/even_darker_purple"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contacts_text">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_contacts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <LinearLayout
@@ -122,9 +200,4 @@
             android:src="@drawable/settings_icon" />
 
     </LinearLayout>
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
