@@ -20,33 +20,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/budget_button"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="@string/my_applications_button"
+        android:text="@string/budget_forecast"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="26sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/current_account_text"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.254" />
 
-
-
     <ImageView
         android:id="@+id/current_account_icon"
         android:layout_width="34dp"
         android:layout_height="34dp"
         android:layout_marginStart="10dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/sequence_of_several_icons"
         android:src="@drawable/euro_icon"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toStartOf="@id/current_account_text"
-        android:contentDescription="@string/sequence_of_several_icons" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/budget_button" />
 
     <TextView
         android:id="@+id/current_account_text"
@@ -66,6 +66,7 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:src="@drawable/pix"
+        android:layout_marginBottom="20dp"
         app:layout_constraintEnd_toStartOf="@+id/current_account_text"
         app:layout_constraintStart_toStartOf="@+id/current_account_icon"
         app:layout_constraintTop_toBottomOf="@+id/current_account_icon"
@@ -89,6 +90,7 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:src="@drawable/cards_icon"
+        android:layout_marginBottom="20dp"
         app:layout_constraintEnd_toEndOf="@+id/borrow_icon"
         app:layout_constraintStart_toStartOf="@id/borrow_icon"
         app:layout_constraintTop_toBottomOf="@+id/borrow_icon"
@@ -112,6 +114,7 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:src="@drawable/mortgage"
+        android:layout_marginBottom="20dp"
         app:layout_constraintEnd_toEndOf="@+id/credit_card_icon"
         app:layout_constraintStart_toStartOf="@+id/credit_card_icon"
         app:layout_constraintTop_toBottomOf="@+id/credit_card_icon"
@@ -135,6 +138,7 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:src="@drawable/porquinho_savins"
+        android:layout_marginBottom="20dp"
         app:layout_constraintEnd_toEndOf="@+id/mortgage_icon"
         app:layout_constraintStart_toStartOf="@+id/mortgage_icon"
         app:layout_constraintTop_toBottomOf="@+id/mortgage_icon"
@@ -228,6 +232,4 @@
             android:src="@drawable/settings_icon" />
 
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
