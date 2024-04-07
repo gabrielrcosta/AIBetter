@@ -40,12 +40,13 @@
         android:src="@drawable/aib_logo_white"
         android:layout_marginHorizontal="29dp"
         app:layout_constraintEnd_toEndOf="@+id/card_view"
-        app:layout_constraintTop_toTopOf="@+id/card_view" />
+        app:layout_constraintTop_toTopOf="@+id/card_view"
+        android:contentDescription="@string/card_logo" />
 
     <TextView
         android:id="@+id/card_holder_name"
         android:layout_width="200dp"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:text="@string/card_holder_example"
         android:textAllCaps="true"
@@ -90,7 +91,7 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Your Card is Frozen"
+        android:text="@string/your_card_is_frozen"
         android:textColor="@color/gray"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/freeze_card"
@@ -104,7 +105,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:text="freeze my card"
+        android:text="@string/freeze_my_card"
         app:layout_constraintBottom_toTopOf="@id/show_pin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -114,7 +115,7 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Show my PIN"
+        android:text="@string/show_my_pin"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/cancel_card"
         app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +126,7 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Cancel My Card"
+        android:text="@string/cancel_my_card"
         android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/replace_card"
@@ -137,7 +138,7 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Replace My Card"
+        android:text="@string/replace_my_card"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -218,21 +219,12 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/check_image"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/twotone_check_circle_24"
-                android:contentDescription="Confirmation Icon" />
-
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
                 style="@style/Widget.MaterialComponents.Button"
-                android:text="New card requested successfully!"
+                android:text="@string/new_card_requested_successfully"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         </LinearLayout>
@@ -265,7 +257,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="1234"
+                android:text="@string/_1000"
                 android:visibility="invisible"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -278,10 +270,43 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 style="@style/Widget.MaterialComponents.Button"
-                android:text="Reveal Pin"
+                android:text="@string/reveal_pin"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         </LinearLayout>
     </FrameLayout>
 
+    <FrameLayout
+        android:id="@+id/card_canceled_overlay"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#AA000000"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/even_darker_purple"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/card_canceled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                style="@style/Widget.MaterialComponents.Button"
+                android:text="@string/card_canceled_successfully_your_next_step_is_to_request_a_new_card"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        </LinearLayout>
+    </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
