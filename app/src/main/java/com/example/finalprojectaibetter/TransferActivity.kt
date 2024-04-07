@@ -1,40 +1,107 @@
 package com.example.finalprojectaibetter
 
+import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
+import android.util.Log
+import com.example.finalprojectaibetter.databinding.ActivityTransferBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import java.lang.Exception
 
 class TransferActivity : AppCompatActivity() {
+
+    //Firebase Firestore database instance
+    private var db = Firebase.firestore
+    //Binding object to access the layout views
+    private lateinit var binding: ActivityTransferBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_transfer)
+        //Inflate the layout for this activity using binding
+        binding = ActivityTransferBinding.inflate(layoutInflater)
+        //Set the content view to the root of the layout
+        setContentView(binding.root)
 
-        val closeButton: ImageView = findViewById(R.id.close_arrow)
-        val homeButton: ImageView = findViewById(R.id.home_balance_icon)
-        val productsIcon: ImageView = findViewById(R.id.products_icon)
-        val transferButton: ImageView = findViewById(R.id.tranfers_icon)
-        val cardsButton: ImageView = findViewById(R.id.cards_icon)
+        fetchUserAccountBalance()
+        setupClickListener()
 
-        closeButton.setOnClickListener {
-            navigateTo(MainScreenActivity::class.java)
-        }
-        homeButton.setOnClickListener {
-            navigateTo(MainScreenActivity::class.java)
-        }
-        productsIcon.setOnClickListener {
-            navigateTo(ProductsActivity::class.java)
-        }
-        transferButton.setOnClickListener {
-            navigateTo(TransferActivity::class.java)
-        }
-        cardsButton.setOnClickListener {
-            navigateTo(CardManagerActivity::class.java)
+        //Set an onClick listener for the 'confirm transfer' button
+        binding.transferConfirmButton.setOnClickListener {
+            //Create an Intent to start the ConfirmTransactionActivity
+            val intent = Intent(this, ConfirmTransactionActivity::class.java).apply {
+
+                //Get the value from the editText and put it as an extra in the Intent
+                val value = binding.editText.text
+                putExtra("value", value.toString())
+            }
+            //Start the activity defined in the Intent
+            startActivity(intent)
         }
     }
+    //Setup click listeners for several UI elements
+    private fun setupClickListener() {
+        //Listener for the close arrow to finish the activity
+        binding.closeArrow.setOnClickListener {
+            finish()
+        }
+        //Listeners to navigate to different activities based on the icon clicked
+        binding.homeBalanceIcon.setOnClickListener {
+            navigateTo(MainScreenActivity::class.java)
+        }
+        binding.productsIcon.setOnClickListener {
+            navigateTo(ProductsActivity::class.java)
+        }
+        binding.cardsIcon.setOnClickListener {
+            navigateTo(CardManagerActivity::class.java)
+        }
+        binding.settingsIcon.setOnClickListener {
+            navigateTo(SettingsActivity::class.java)
+        }
+    }
+    //Help method to start an activity for the given class
     private fun Context.navigateTo(destination: Class<*>) {
-        val intent = Intent(this, destination)
-        startActivity(intent)
+        startActivity(Intent(this, destination))
+    }
+    @SuppressLint("SuspiciousIndentation")
+    //Fetches the user's account balance from Firestore
+    private fun fetchUserAccountBalance() {
+        try {
+            //Get the user ID from FirebaseAuth
+            val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+            //Query Firestore for the user's "Account" collection
+            db.collection("users")
+                .document(userId)
+                .collection("Account")
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        //Log the document ID and data
+                        Log.d(ContentValues.TAG, "document ID ${document.id} => ${document.data}")
+                        val balance = document.data["balance"]
+                        Log.d(ContentValues.TAG, "balance ${balance.toString()}")
+                        //Display the balance if it exists
+                        balance?.let {
+                            displayBalance(it.toString())
+                        }
+                    }
+                }
+                .addOnFailureListener{
+                    //Log any errors the app might find
+                    it.message?.let { it1 -> Log.d(ContentValues.TAG, it1) }
+                }
+        } catch (exception: Exception) {
+            //Log any exceptions within the TAG = contentValue
+            Log.d(ContentValues.TAG, "error exception = ${exception.message}")
+        }
+    }
+
+    //Displays the user balance on the UI.
+    private fun displayBalance(balance: String) {
+        //update balance text on the text view
+        binding.balanceTextAtt.text = balance
     }
 }
