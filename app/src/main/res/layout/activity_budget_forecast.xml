@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/even_darker_purple">
+
+    <ImageView
+        android:id="@+id/close_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/close_arrow"
+        android:layout_margin="20dp"
+        android:contentDescription="@string/closing_arrow_back_to_main_menu" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/even_darker_purple" />
+
+    <EditText
+        android:id="@+id/initialAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:hint="@string/initial_amount"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:inputType="numberDecimal"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/monthlySavings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:hint="@string/monthly_savings"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:inputType="numberDecimal"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/forecastMonths"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:hint="@string/forecast_period_months"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:inputType="number"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/calculateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="@string/calculate_forecast"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/forecastResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="16dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:text="@string/forecast_result_will_appear_here"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
