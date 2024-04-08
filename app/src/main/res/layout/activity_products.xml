@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/even_darker_purple"
+    android:background="@drawable/aibetterlogo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProductsActivity">
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:titleMarginStart="156dp"
         android:title="@string/title_products"
-        android:titleTextColor="@color/white"
+        android:titleTextColor="@color/african_violet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +42,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginBottom="20dp"
         android:contentDescription="@string/sequence_of_several_icons"
-        android:src="@drawable/euro_icon"
+        android:src="@drawable/baseline_euro_symbol_24"
+        android:background="@color/gray"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toStartOf="@id/current_account_text"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +55,9 @@
         android:layout_height="wrap_content"
         android:text="@string/current_account"
         android:textAlignment="viewStart"
-        android:textColor="@color/white"
+        android:background="@color/gray"
+        android:textColor="@color/african_violet"
+        android:textStyle="bold"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/current_account_icon"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +68,8 @@
         android:id="@+id/borrow_icon"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:src="@drawable/pix"
+        android:src="@drawable/new_pix_24"
+        android:background="@color/gray"
         android:layout_marginBottom="20dp"
         app:layout_constraintEnd_toStartOf="@+id/current_account_text"
         app:layout_constraintStart_toStartOf="@+id/current_account_icon"
@@ -78,8 +82,10 @@
         android:layout_height="wrap_content"
         android:text="@string/borrow"
         android:textAlignment="viewStart"
-        android:textColor="@color/white"
+        android:textColor="@color/african_violet"
+        android:textStyle="bold"
         android:textSize="24sp"
+        android:background="@color/gray"
         app:layout_constraintBottom_toBottomOf="@+id/borrow_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/borrow_icon"
@@ -89,8 +95,9 @@
         android:id="@+id/credit_card_icon"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:src="@drawable/cards_icon"
+        android:src="@drawable/new_credit_card_24"
         android:layout_marginBottom="20dp"
+        android:background="@color/gray"
         app:layout_constraintEnd_toEndOf="@+id/borrow_icon"
         app:layout_constraintStart_toStartOf="@id/borrow_icon"
         app:layout_constraintTop_toBottomOf="@+id/borrow_icon"
@@ -102,8 +109,10 @@
         android:layout_height="wrap_content"
         android:text="@string/credit_card"
         android:textAlignment="viewStart"
-        android:textColor="@color/white"
+        android:textColor="@color/african_violet"
+        android:textStyle="bold"
         android:textSize="24sp"
+        android:background="@color/gray"
         app:layout_constraintTop_toTopOf="@id/credit_card_icon"
         app:layout_constraintBottom_toBottomOf="@+id/credit_card_icon"
         app:layout_constraintEnd_toEndOf="parent"
@@ -113,8 +122,9 @@
         android:id="@+id/mortgage_icon"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:src="@drawable/mortgage"
+        android:src="@drawable/new_house_24"
         android:layout_marginBottom="20dp"
+        android:background="@color/gray"
         app:layout_constraintEnd_toEndOf="@+id/credit_card_icon"
         app:layout_constraintStart_toStartOf="@+id/credit_card_icon"
         app:layout_constraintTop_toBottomOf="@+id/credit_card_icon"
@@ -126,8 +136,10 @@
         android:layout_height="wrap_content"
         android:text="@string/mortgage"
         android:textAlignment="viewStart"
-        android:textColor="@color/white"
+        android:textColor="@color/african_violet"
+        android:textStyle="bold"
         android:textSize="24sp"
+        android:background="@color/gray"
         app:layout_constraintBottom_toBottomOf="@+id/mortgage_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/mortgage_icon"
@@ -137,8 +149,9 @@
         android:id="@+id/savings_icon"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:src="@drawable/porquinho_savins"
+        android:src="@drawable/new_savings_24"
         android:layout_marginBottom="20dp"
+        android:background="@color/gray"
         app:layout_constraintEnd_toEndOf="@+id/mortgage_icon"
         app:layout_constraintStart_toStartOf="@+id/mortgage_icon"
         app:layout_constraintTop_toBottomOf="@+id/mortgage_icon"
@@ -150,8 +163,10 @@
         android:layout_height="wrap_content"
         android:text="@string/savings"
         android:textAlignment="viewStart"
-        android:textColor="@color/white"
+        android:textColor="@color/african_violet"
+        android:textStyle="bold"
         android:textSize="24sp"
+        android:background="@color/gray"
         app:layout_constraintBottom_toBottomOf="@+id/savings_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/savings_icon"
@@ -162,6 +177,7 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:src="@drawable/insurance_icon"
+        android:background="@color/gray"
         app:layout_constraintEnd_toEndOf="@+id/savings_icon"
         app:layout_constraintStart_toStartOf="@+id/savings_icon"
         app:layout_constraintTop_toBottomOf="@+id/savings_icon"
@@ -173,8 +189,10 @@
         android:layout_height="wrap_content"
         android:text="@string/insurance"
         android:textAlignment="viewStart"
-        android:textColor="@color/white"
+        android:textColor="@color/african_violet"
+        android:textStyle="bold"
         android:textSize="24sp"
+        android:background="@color/gray"
         app:layout_constraintBottom_toBottomOf="@+id/insurance_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/insurance_icon"
@@ -197,7 +215,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:contentDescription="@string/balance_page_icon"
-            android:src="@drawable/baseline_account_balance_24" />
+            android:src="@drawable/new_account_balance_24" />
 
         <ImageView
             android:id="@+id/tranfers_icon"
@@ -205,7 +223,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/transfers_icon"
-            android:src="@drawable/pay_transfer" />
+            android:src="@drawable/new_double_arrow_24" />
 
         <ImageView
             android:id="@+id/cards_icon"
@@ -213,7 +231,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/cards_icon"
-            android:src="@drawable/cards_icon" />
+            android:src="@drawable/new_credit_card_24" />
 
         <ImageView
             android:id="@+id/products_icon"
@@ -221,7 +239,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/products_icon"
-            android:src="@drawable/products_icon" />
+            android:src="@drawable/outline_shopping_cart_24" />
 
         <ImageView
             android:id="@+id/settings_icon"
@@ -229,7 +247,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/settings_icon"
-            android:src="@drawable/settings_icon" />
+            android:src="@drawable/new_settings_24" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/even_darker_purple"
+    android:background="@drawable/aibetterlogo"
     tools:context=".ContactListActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Contacts List"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="@color/african_violet" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewContactList"
@@ -47,7 +47,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:contentDescription="@string/balance_page_icon"
-            android:src="@drawable/baseline_account_balance_24" />
+            android:src="@drawable/new_account_balance_24" />
 
         <ImageView
             android:id="@+id/tranfers_icon"
@@ -55,7 +55,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/transfers_icon"
-            android:src="@drawable/pay_transfer" />
+            android:src="@drawable/new_double_arrow_24" />
 
         <ImageView
             android:id="@+id/cards_icon"
@@ -63,7 +63,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/cards_icon"
-            android:src="@drawable/cards_icon" />
+            android:src="@drawable/new_credit_card_24" />
 
         <ImageView
             android:id="@+id/products_icon"
@@ -71,7 +71,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/products_icon"
-            android:src="@drawable/products_icon" />
+            android:src="@drawable/outline_shopping_cart_24" />
 
         <ImageView
             android:id="@+id/settings_icon"
@@ -79,8 +79,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/settings_icon"
-            android:src="@drawable/settings_icon" />
+            android:src="@drawable/new_settings_24" />
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

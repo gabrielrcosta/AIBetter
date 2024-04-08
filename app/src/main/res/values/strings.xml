@@ -35,7 +35,7 @@
     <string name="sending_amount">You are sending €%1$s to %2$s</string>
     <string name="sent_amount_to">You sent €%1$s to %2$s</string>
     <string name="add_contact_buttom">add contact buttom</string>
-    <string name="contacts">Contacts</string>
+    <string name="contacts">Contacts List</string>
     <string name="recent_tranfers">Recent Tranfers</string>
     <string name="account_id">Account ID:</string>
     <string name="search">Search</string>
@@ -81,4 +81,6 @@
     <string name="search_user">Search User</string>
     <string name="send_money">Send Money</string>
     <string name="budget_forecast">Budget Forecast</string>
+    <string name="add_a_contact">Add a Contact</string>
+    <string name="statement">Statement</string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/even_darker_purple"
+    android:background="@drawable/aibetterlogo"
     android:orientation="vertical"
     tools:context=".SaveContactAccountActivity" >
 
@@ -12,24 +12,19 @@
         android:id="@+id/close_arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/close_arrow"
+        android:src="@drawable/new_close_arrow"
         android:layout_margin="20dp"
         android:contentDescription="@string/closing_arrow_back_to_main_menu" />
-    
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/aib_logo_white"
-        android:contentDescription="@string/logo" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/account_id"
+        android:layout_marginTop="26dp"
         android:textSize="20sp"
         android:layout_marginHorizontal="20dp"
-        android:textColor="@color/white" />
+        android:textStyle="bold"
+        android:textColor="@color/african_violet" />
 
     <EditText
         android:id="@+id/user_edit_text"
@@ -37,14 +32,16 @@
         android:layout_height="50dp"
         android:inputType="number"
         android:hint="@string/_6_dig_code_eg_123456"
-        android:textColorHint="@color/gray"
-        android:textColor="@color/white"
+        android:textColorHint="@color/african_violet"
+        android:textColor="@color/african_violet"
+        android:textStyle="bold"
         android:layout_marginHorizontal="20dp"
         android:autofillHints="edit text" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
         android:layout_marginTop="10dp">
 
         <Button
@@ -53,16 +50,14 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:text="@string/search"
-            android:textSize="18sp"
-            style="?android:attr/buttonBarButtonStyle" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/add_contact_button"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:text="@string/add_contact"
-            android:textSize="18sp"
-            style="?android:attr/buttonBarButtonStyle" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -72,10 +67,11 @@
         android:layout_height="wrap_content"
         android:text="@string/account_id_does_not_match_any_account"
         android:textSize="20sp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
         android:visibility="gone"
         android:textAlignment="center"
-        android:textColor="@color/white"/>
+        android:textColor="@color/african_violet"/>
 
     <TextView
         android:id="@+id/message_on_success"
@@ -83,18 +79,20 @@
         android:layout_height="wrap_content"
         android:text="@string/would_you_like_to_add"
         android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:visibility="gone"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:visibility="visible"
         android:textAlignment="center"
-        android:textColor="@color/white" />
+        android:textColor="@color/african_violet" />
 
     <TextView
         android:id="@+id/userFirstName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:textAlignment="center"
+        android:textStyle="bold"
         android:text="@string/username"
-        android:textColor="@color/white"
+        android:textColor="@color/african_violet"
         android:textSize="20sp"
-        android:visibility="gone" />
+        android:visibility="visible" />
 </LinearLayout>

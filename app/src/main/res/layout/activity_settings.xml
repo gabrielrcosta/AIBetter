@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/even_darker_purple"
+    android:background="@drawable/aibetterlogo"
     tools:context=".SettingsActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="@string/settings_head"
-        app:titleTextColor="@color/white"
+        app:titleTextColor="@color/african_violet"
         app:titleMarginStart="158dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,6 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/even_darker_purple"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:visibility="gone"
-                android:backgroundTint="@color/even_darker_purple">
+                android:backgroundTint="@color/gray">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -61,7 +60,7 @@
                         android:layout_margin="5dp"
                         android:text="@string/aib_phone_internet_banking"
                         android:textStyle="bold"
-                        android:textColor="@color/white"
+                        android:textColor="@color/african_violet"
                         android:textSize="20sp" />
 
                     <TextView
@@ -69,7 +68,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:text="@string/_081_872_4724"
-                        android:textColor="@color/white"
+                        android:textColor="@color/african_violet"
                         android:textSize="20sp" />
 
                     <TextView
@@ -78,7 +77,7 @@
                         android:layout_margin="5dp"
                         android:text="@string/outside_ireland"
                         android:textStyle="bold"
-                        android:textColor="@color/white"
+                        android:textColor="@color/african_violet"
                         android:textSize="20sp" />
 
                     <TextView
@@ -86,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:text="@string/_353_1771_2424"
-                        android:textColor="@color/white"
+                        android:textColor="@color/african_violet"
                         android:textSize="20sp" />
 
                     <TextView
@@ -95,7 +94,7 @@
                         android:layout_margin="5dp"
                         android:text="@string/opening_hours"
                         android:textStyle="bold"
-                        android:textColor="@color/white"
+                        android:textColor="@color/african_violet"
                         android:textSize="20sp" />
 
                     <TextView
@@ -103,7 +102,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:text="@string/mon_sun_09_00_to_17_00"
-                        android:textColor="@color/white"
+                        android:textColor="@color/african_violet"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -123,7 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:visibility="gone"
-                android:backgroundTint="@color/even_darker_purple">
+                android:backgroundTint="@color/gray">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -135,7 +134,7 @@
                         android:layout_height="match_parent"
                         android:text="@string/there_are_no_messages_to_be_displayed"
                         android:textSize="20sp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/african_violet"
                         android:textAlignment="center" />
 
                 </LinearLayout>
@@ -145,7 +144,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/developed_by_gabriel_costa"
-                android:textColor="@color/gray"
+                android:textColor="@color/african_violet"
                 android:gravity="center"
                 android:layout_marginTop="16dp"/>
 
@@ -154,7 +153,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -169,7 +168,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:contentDescription="@string/balance_page_icon"
-            android:src="@drawable/baseline_account_balance_24" />
+            android:src="@drawable/new_account_balance_24" />
 
         <ImageView
             android:id="@+id/tranfers_icon"
@@ -177,7 +176,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/transfers_icon"
-            android:src="@drawable/pay_transfer" />
+            android:src="@drawable/new_double_arrow_24" />
 
         <ImageView
             android:id="@+id/cards_icon"
@@ -185,7 +184,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/cards_icon"
-            android:src="@drawable/cards_icon" />
+            android:src="@drawable/new_credit_card_24" />
 
         <ImageView
             android:id="@+id/products_icon"
@@ -193,7 +192,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/products_icon"
-            android:src="@drawable/products_icon" />
+            android:src="@drawable/outline_shopping_cart_24" />
 
         <ImageView
             android:id="@+id/settings_icon"
@@ -201,7 +200,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/settings_icon"
-            android:src="@drawable/settings_icon" />
+            android:src="@drawable/new_settings_24" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

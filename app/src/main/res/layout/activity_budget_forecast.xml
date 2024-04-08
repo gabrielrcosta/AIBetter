@@ -4,20 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/even_darker_purple">
+    android:background="@drawable/aibetterlogo">
 
     <ImageView
         android:id="@+id/close_arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/close_arrow"
+        android:src="@drawable/new_close_arrow"
         android:layout_margin="20dp"
         android:contentDescription="@string/closing_arrow_back_to_main_menu" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:backgroundTint="@color/even_darker_purple" />
+        android:visibility="invisible" />
 
     <EditText
         android:id="@+id/initialAmount"
@@ -25,8 +25,9 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:hint="@string/initial_amount"
-        android:textColor="@color/white"
-        android:textColorHint="@color/gray"
+        android:textStyle="bold"
+        android:textColor="@color/african_violet"
+        android:textColorHint="@color/african_violet"
         android:inputType="numberDecimal"
         android:autofillHints="" />
 
@@ -36,8 +37,9 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:hint="@string/monthly_savings"
-        android:textColor="@color/white"
-        android:textColorHint="@color/gray"
+        android:textColor="@color/african_violet"
+        android:textStyle="bold"
+        android:textColorHint="@color/african_violet"
         android:inputType="numberDecimal"
         android:autofillHints="" />
 
@@ -47,8 +49,9 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:hint="@string/forecast_period_months"
-        android:textColor="@color/white"
-        android:textColorHint="@color/gray"
+        android:textColor="@color/african_violet"
+        android:textStyle="bold"
+        android:textColorHint="@color/african_violet"
         android:inputType="number"
         android:autofillHints="" />
 
@@ -67,7 +70,8 @@
         android:layout_marginTop="30dp"
         android:layout_marginHorizontal="16dp"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/african_violet"
+        android:background="@color/gray"
         android:textSize="20sp"
         android:text="@string/forecast_result_will_appear_here"
         android:layout_gravity="center"/>

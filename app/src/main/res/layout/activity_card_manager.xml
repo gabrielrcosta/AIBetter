@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/even_darker_purple"
+    android:background="@drawable/aibetterlogo"
     tools:context=".CardManagerActivity">
 
     <Toolbar
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:titleMarginStart="174dp"
         android:title="@string/cards_title"
-        android:titleTextColor="@color/white"
+        android:titleTextColor="@color/african_violet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="19dp"
-        android:src="@drawable/aib_logo_white"
+        android:src="@drawable/aibetterlogo"
         android:layout_marginHorizontal="29dp"
         app:layout_constraintEnd_toEndOf="@+id/card_view"
         app:layout_constraintTop_toTopOf="@+id/card_view"
@@ -86,14 +86,16 @@
         app:layout_constraintStart_toEndOf="@+id/encrypted_digits_card"
         app:layout_constraintTop_toTopOf="@+id/encrypted_digits_card" />
 
-    <com.google.android.material.button.MaterialButton
+    <TextView
         android:id="@+id/frozen_card_text"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/your_card_is_frozen"
-        android:textColor="@color/gray"
-        android:visibility="invisible"
+        android:textColor="@color/african_violet"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:visibility="visible"
+        android:background="@color/gray"
         app:layout_constraintBottom_toTopOf="@+id/freeze_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,8 +106,9 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/african_violet"
         android:text="@string/freeze_my_card"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/show_pin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -116,7 +119,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/show_my_pin"
-        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textColor="@color/african_violet"
         app:layout_constraintBottom_toTopOf="@+id/cancel_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -128,7 +132,8 @@
         android:layout_height="wrap_content"
         android:text="@string/cancel_my_card"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textColor="@color/african_violet"
         app:layout_constraintBottom_toTopOf="@id/replace_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -139,7 +144,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/replace_my_card"
-        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textColor="@color/african_violet"
         app:layout_constraintBottom_toTopOf="@id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -161,7 +167,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:contentDescription="@string/balance_page_icon"
-            android:src="@drawable/baseline_account_balance_24" />
+            android:src="@drawable/new_account_balance_24" />
 
         <ImageView
             android:id="@+id/tranfers_icon"
@@ -169,7 +175,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/transfers_icon"
-            android:src="@drawable/pay_transfer" />
+            android:src="@drawable/new_double_arrow_24" />
 
         <ImageView
             android:id="@+id/cards_icon"
@@ -177,7 +183,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/cards_icon"
-            android:src="@drawable/cards_icon" />
+            android:src="@drawable/new_credit_card_24" />
 
         <ImageView
             android:id="@+id/products_icon"
@@ -185,7 +191,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/products_icon"
-            android:src="@drawable/products_icon" />
+            android:src="@drawable/outline_shopping_cart_24" />
 
         <ImageView
             android:id="@+id/settings_icon"
@@ -193,7 +199,7 @@
             android:layout_height="30dp"
             android:layout_margin="20dp"
             android:contentDescription="@string/settings_icon"
-            android:src="@drawable/settings_icon" />
+            android:src="@drawable/new_settings_24" />
 
     </LinearLayout>
 
@@ -214,7 +220,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/even_darker_purple"
+            android:background="@color/gray"
             android:elevation="4dp"
             android:orientation="vertical"
             android:padding="16dp">
@@ -247,7 +253,7 @@
             android:layout_width="250dp"
             android:layout_height="180dp"
             android:layout_gravity="center"
-            android:background="@color/even_darker_purple"
+            android:background="@color/gray"
             android:elevation="4dp"
             android:orientation="vertical"
             android:padding="16dp">
@@ -258,8 +264,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/_1000"
-                android:visibility="invisible"
-                android:textColor="@color/white"
+                android:visibility="gone"
+                android:textColor="@color/african_violet"
                 android:textStyle="bold"
                 android:textSize="30sp"/>
 
@@ -293,7 +299,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/even_darker_purple"
+            android:background="@color/gray"
             android:elevation="4dp"
             android:orientation="vertical"
             android:padding="16dp">
