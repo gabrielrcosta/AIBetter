@@ -24,6 +24,9 @@ class SaveContactAccountActivity : AppCompatActivity() {
         binding = ActivitySaveContactAccountBinding.inflate(layoutInflater)
         binding.apply {
             setContentView(binding.root)
+            closeArrow.setOnClickListener {
+                finish()
+            }
 
             searchButton.setOnClickListener {
                 val userId = userEditText.text.toString()
@@ -57,9 +60,6 @@ class SaveContactAccountActivity : AppCompatActivity() {
                         }
                     }
 
-                closeArrow.setOnClickListener {
-                    navigateTo(MainScreenActivity::class.java)
-                }
                 addContactButton.setOnClickListener {
                     navigateTo(MainScreenActivity::class.java)
                 }

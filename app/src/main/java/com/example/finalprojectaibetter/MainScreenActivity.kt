@@ -16,10 +16,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import java.lang.Exception
 
-class MainScreenActivity : AppCompatActivity() {
+class MainScreenActivity : AppCompatActivity(),
+    ContactAdapter.OnItemClickListener,
+    TransactionsAdapter.OnTransferItemClickListener {
 
     private lateinit var binding: ActivityMainScreenBinding
     private lateinit var contactAdapter: ContactAdapter
+    private lateinit var transactionAdapter: TransactionsAdapter
     private var contactList: MutableList<User> = mutableListOf()
     private var transactionList: MutableList<Transaction> = mutableListOf()
     private val db = FirebaseFirestore.getInstance()
@@ -33,7 +36,7 @@ class MainScreenActivity : AppCompatActivity() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser == null) {
             Log.e(TAG, "No user logged in")
-            startActivity(Intent(this, MainActivity::class.java)) // Redirecione para a tela de login
+            startActivity(Intent(this, MainActivity::class.java)) //go back to the login screen if user is logged out
             finish()
             return
         }
@@ -60,7 +63,7 @@ class MainScreenActivity : AppCompatActivity() {
         binding.settingsIcon.setOnClickListener {
             navigateTo(SettingsActivity::class.java)
         }
-        binding.recentTransactions.setOnClickListener {
+        binding.statementButton.setOnClickListener {
             navigateTo(StatementActivity::class.java)
         }
         binding.contactsText.setOnClickListener {
@@ -68,20 +71,20 @@ class MainScreenActivity : AppCompatActivity() {
         }
     }
 
-    //Created the new function to replace 5 new functions for every click one new intent.
+    //Created the new function to replace new functions for every click one new intent.
     private fun Context.navigateTo(destination: Class<*>) {
         startActivity(Intent(this, destination))
     }
 
-    private fun setupTransfersRecyclerView(transactionList: List<Transaction>) {
-        val transactionsAdapter = TransactionsAdapter(transactionList)
+    private fun setupTransfersRecyclerView(transactionList: MutableList<Transaction>) {
+        transactionAdapter = TransactionsAdapter(transactionList, this)
         binding.recyclerRecentTransfers.layoutManager = LinearLayoutManager(this@MainScreenActivity)
-        binding.recyclerRecentTransfers.adapter = transactionsAdapter
+        binding.recyclerRecentTransfers.adapter = transactionAdapter
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun fetchTransfer() {
-        // Aqui você busca os dados das transferencias, convertendo os documentos do Firestore em objetos User
+        //get transfer data from firebase
         db.collection("users")
             .document(userId)
             .collection("Transaction")
@@ -107,17 +110,16 @@ class MainScreenActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupRecyclerView(contactList: List<User>) {
-        contactAdapter = ContactAdapter(contactList)
-        binding.recyclerContacts.apply {
-            layoutManager = LinearLayoutManager(this@MainScreenActivity)
-            adapter = contactAdapter
-        }
+    private fun setupRecyclerView(contactList: MutableList<User>) {
+        contactAdapter = ContactAdapter(contactList, this)
+        Log.d(TAG, "cliquei $contactList")
+        binding.recyclerContacts.adapter = contactAdapter
+        binding.recyclerContacts.layoutManager = LinearLayoutManager(this@MainScreenActivity)
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun fetchContacts() {
-        // Aqui você busca os dados dos usuários, convertendo os documentos do Firestore em objetos User
+        //get user data from db.
         db.collection("users").document(userId).collection("Contact").get().addOnSuccessListener { snapshot ->
             snapshot.forEach { document ->
                 val userId = document.getString("userId") ?: "No User ID"
@@ -162,5 +164,16 @@ class MainScreenActivity : AppCompatActivity() {
     }
     private fun displayBalance(balance: String) {
         binding.balanceValue.text = balance
+    }
+
+    override fun onItemClick(user: User) {
+        val intent = Intent(this, ContactListActivity::class.java)
+        Log.d(TAG, "cliquei $intent")
+        startActivity(intent)
+    }
+
+    override fun onTransferItemClick(transferList: Transaction) {
+        val intent = Intent(this, StatementActivity::class.java)
+        startActivity(intent)
     }
 }

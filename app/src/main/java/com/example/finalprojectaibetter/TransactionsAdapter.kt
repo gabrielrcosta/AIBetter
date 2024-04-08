@@ -12,13 +12,19 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class TransactionsAdapter(private var transactionList: List<Transaction>) :
+class TransactionsAdapter(private var transactionList: List<Transaction>, private var listener: OnTransferItemClickListener) :
     RecyclerView.Adapter<TransactionsAdapter.ContactViewHolder>() {
     class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val firstName: TextView = itemView.findViewById(R.id.user_name)
         val dateOfTransaction: TextView = itemView.findViewById(R.id.transaction_date)
-        //val roundImageView : RoundImageView = itemView.findViewById(R.id.round_image_user)
         val amountTransferred: TextView = itemView.findViewById(R.id.amount_sent)
+
+        fun bind(user: Transaction, listener: OnTransferItemClickListener) {
+            firstName.text = user.toUserName
+            itemView.setOnClickListener {
+                listener.onTransferItemClick(user)
+            }
+        }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recent_transfer, parent, false)
@@ -28,6 +34,7 @@ class TransactionsAdapter(private var transactionList: List<Transaction>) :
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val transfer = transactionList[position]
         holder.dateOfTransaction.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date(transfer.dateOfTransaction))
+        holder.bind(user = transfer, listener)
         when (transfer.transactionType) {
             TransactionType.SENT.name -> {
                 holder.firstName.text = "${transfer.toUserName} ${transfer.toUserLastName}"
@@ -41,10 +48,8 @@ class TransactionsAdapter(private var transactionList: List<Transaction>) :
     }
     override fun getItemCount(): Int = 3
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateTransfer(list: List<Transaction>) {
-        this.transactionList = list
-        notifyDataSetChanged()
+    interface OnTransferItemClickListener {
+        fun onTransferItemClick(transferList: Transaction)
     }
 }
 
