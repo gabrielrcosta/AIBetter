@@ -94,7 +94,7 @@
         android:textColor="@color/african_violet"
         android:textStyle="bold"
         android:textAlignment="center"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:background="@color/gray"
         app:layout_constraintBottom_toTopOf="@+id/freeze_card"
         app:layout_constraintEnd_toEndOf="parent"
