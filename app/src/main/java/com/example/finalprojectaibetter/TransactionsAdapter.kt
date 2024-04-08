@@ -46,7 +46,7 @@ class TransactionsAdapter(private var transactionList: List<Transaction>, privat
             }
         }
     }
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = transactionList.size
 
     interface OnTransferItemClickListener {
         fun onTransferItemClick(transferList: Transaction)

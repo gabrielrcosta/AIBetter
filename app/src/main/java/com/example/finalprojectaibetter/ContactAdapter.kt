@@ -36,7 +36,7 @@ class ContactAdapter(private val contactsList: MutableList<User>, private val li
         holder.roundImageView.loadImage(contact.profilePic)
     }
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = contactsList.size
 
     interface OnItemClickListener {
         fun onItemClick(user: User)
