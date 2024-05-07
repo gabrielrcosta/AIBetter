@@ -161,7 +161,7 @@ class ConfirmTransactionActivity : AppCompatActivity() {
 
                 //check if the account has enough balance
                 if (fromAccountBalance < amount) {
-                    throw FirebaseFirestoreException("Saldo insuficiente", FirebaseFirestoreException.Code.ABORTED)
+                    throw FirebaseFirestoreException("Insuficient Funds", FirebaseFirestoreException.Code.ABORTED)
                 }
                 //calculate new balance
                 val newFromAccountBalance = fromAccountBalance - amount
