@@ -6,7 +6,7 @@
     android:id="@+id/sendMoneyScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/aibetterlogo"
+    android:background="@drawable/background11"
     tools:context=".ConfirmTransactionActivity">
 
     <View
@@ -63,6 +63,7 @@
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@+id/search_user_button"
         app:layout_constraintStart_toStartOf="parent"

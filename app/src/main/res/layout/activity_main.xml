@@ -5,53 +5,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/aibetterlogo"
+    android:background="@color/gray_theme"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:src="@drawable/aibetterlogo"
+        android:fadingEdge="vertical"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/background11"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/reg_number"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:autofillHints="Registration number goes here"
         android:hint="@string/e_mail"
+        android:inputType="text"
         android:textAlignment="center"
-        android:layout_margin="20dp"
         android:textColor="@color/even_darker_purple"
         android:textColorHint="@color/gray"
-        app:layout_constraintBottom_toTopOf="@id/password_editable"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
         tools:ignore="TextFields" />
 
     <EditText
         android:id="@+id/password_editable"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:autofillHints="password goes here"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="20dp"
+        android:autofillHints="password goes here"
         android:hint="@string/password"
         android:inputType="numberPassword"
         android:textAlignment="center"
         android:textColor="@color/even_darker_purple"
         android:textColorHint="@color/gray"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_number" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:text="@string/login"
-        android:layout_margin="20dp"
         android:textAlignment="center"
         android:textColorHint="@color/gray"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/password_editable" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="50dp"
+        android:text="Don't Have an Account?"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SignUp"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/african_violet"
+        app:layout_constraintBottom_toBottomOf="@id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

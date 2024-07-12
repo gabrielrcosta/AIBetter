@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/aibetterlogo"
     tools:context=".MainScreenActivity">
 
     <ScrollView
@@ -20,17 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-            <ImageView
-                android:id="@+id/main_logo"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="60dp"
-                android:contentDescription="@string/logo"
-                android:src="@drawable/aib_logo_white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
                 android:id="@+id/balance_text"
                 android:layout_width="0dp"
@@ -43,7 +31,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/main_logo" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/balance_value"
