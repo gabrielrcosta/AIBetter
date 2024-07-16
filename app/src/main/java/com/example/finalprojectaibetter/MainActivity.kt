@@ -18,6 +18,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.signup.setOnClickListener {
+            startActivity(Intent(this, SignUp::class.java))
+        }
+
         // Initialize Firebase Auth
         val firebaseAuth = FirebaseAuth.getInstance()
 
@@ -46,6 +50,9 @@ class MainActivity : AppCompatActivity() {
                         //in case the login and password does not match any in the database return the message.
                     }
                 }
+                Toast.makeText(this, "User not Found", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "User or Password empty", Toast.LENGTH_SHORT).show()
             }
         }
     }
