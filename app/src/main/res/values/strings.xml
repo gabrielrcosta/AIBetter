@@ -83,4 +83,7 @@
     <string name="budget_forecast">Budget Forecast</string>
     <string name="add_a_contact">Add a Contact</string>
     <string name="statement">Statement</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="repeat_password">Repeat Password</string>
 </resources>
