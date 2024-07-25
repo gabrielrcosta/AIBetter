@@ -8,7 +8,7 @@ import com.example.finalprojectaibetter.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class MainActivity : AppCompatActivity() {
+class Login : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -46,11 +46,11 @@ class MainActivity : AppCompatActivity() {
                                 //Starting the MainScreenActivity with the created intent.
                                 }
                     } else {
+                        Toast.makeText(this, "User not Found", Toast.LENGTH_SHORT).show()
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
                         //in case the login and password does not match any in the database return the message.
                     }
                 }
-                Toast.makeText(this, "User not Found", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "User or Password empty", Toast.LENGTH_SHORT).show()
             }
