@@ -1,6 +1,6 @@
 package com.example.finalprojectaibetter.Model
 data class Transaction(var amount: Double = 1.0,
-                       var dateOfTransaction: Long = 11,
+                       var dateOfTransaction: Long = 100000000,
                        var toUserId: String = "",
                        var toUserName: String = "",
                        var transferId: String = "",
