@@ -30,7 +30,7 @@ class Login : AppCompatActivity() {
             //getting the information from the edit texts
             val regNumber = binding.regNumber.text.toString()
             val password = binding.passwordEditable.text.toString()
-            //if the is information we attempt to log in
+            //if not null we attempt to log in
             if (regNumber.isNotEmpty() && password.isNotEmpty()) {
                 firebaseAuth.signInWithEmailAndPassword(regNumber, password).addOnCompleteListener {
                     if (it.isSuccessful) {
