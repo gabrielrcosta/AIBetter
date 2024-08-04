@@ -45,10 +45,11 @@ class StatementActivity : AppCompatActivity() {
                     val lastName = document.getString("toUserLastName") ?: "No Last Name"
                     val transferId = document.getString("transferId") ?: "No transfer ID"
                     val transactionType = document.getString("transactionType") ?: "SENT"
+                    val dateOfTransaction = document.getLong("dateOfTransaction") ?: 10122000
                     transactionList.add(
                         Transaction(
                             amount = amount,
-                            dateOfTransaction = 0,
+                            dateOfTransaction = dateOfTransaction,
                             toUserId = userId,
                             toUserName = name,
                             toUserLastName = lastName,
