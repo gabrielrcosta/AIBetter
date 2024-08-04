@@ -16,7 +16,11 @@ import java.lang.Exception
 class TransferActivity : AppCompatActivity() {
 
     //Firebase Firestore database instance
-    private var db = Firebase.firestore
+    private val db = Firebase.firestore
+    private lateinit var userId: String
+    private lateinit var userName: String
+    private lateinit var userLastName: String
+
     //Binding object to access the layout views
     private lateinit var binding: ActivityTransferBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,16 +30,25 @@ class TransferActivity : AppCompatActivity() {
         //Set the content view to the root of the layout
         setContentView(binding.root)
 
+        // Get info from the user clicked on the previous screen.
+        userId = intent.getStringExtra("USER_ID") ?: ""
+        userName = intent.getStringExtra("USER_NAME") ?: ""
+        userLastName = intent.getStringExtra("USER_LAST_NAME") ?: ""
+        Log.d("ConfirmTransactionActivity", "Received userId: $userId, userName: $userName, userLastName: $userLastName")
+
         fetchUserAccountBalance()
         setupClickListener()
 
         //Set an onClick listener for the 'confirm transfer' button
         binding.transferConfirmButton.setOnClickListener {
+            val value = binding.editText.text
+
             //Create an Intent to start the ConfirmTransactionActivity
             val intent = Intent(this, ConfirmTransactionActivity::class.java).apply {
-
                 //Get the value from the editText and put it as an extra in the Intent
-                val value = binding.editText.text
+                putExtra("USER_ID", userId)
+                putExtra("USER_NAME", userName)
+                putExtra("USER_LAST_NAME", userLastName)
                 putExtra("value", value.toString())
             }
             //Start the activity defined in the Intent
@@ -100,8 +113,9 @@ class TransferActivity : AppCompatActivity() {
     }
 
     //Displays the user balance on the UI.
+    @SuppressLint("SetTextI18n")
     private fun displayBalance(balance: String) {
         //update balance text on the text view
-        binding.balanceTextAtt.text = balance
+        binding.balanceTextAtt.text = "Your balance is: € $balance"
     }
 }
