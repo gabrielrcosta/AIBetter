@@ -34,13 +34,13 @@ class MainScreenActivity : AppCompatActivity(),
         setContentView(binding.root)
 
         val currentUser = FirebaseAuth.getInstance().currentUser
+        getUserData(userId)
         if (currentUser == null) {
             Log.e(TAG, "No user logged in")
-            startActivity(Intent(this, MainActivity::class.java)) //go back to the login screen if user is logged out
+            startActivity(Intent(this, Login::class.java)) //go back to the login screen if user is logged out
             finish()
             return
         }
-
         fetchContacts()
         fetchTransfer()
         fetchUserAccountBalance()
@@ -48,7 +48,7 @@ class MainScreenActivity : AppCompatActivity(),
     }
 
     private fun setupClickListener() {
-        binding.addContact.setOnClickListener {
+        binding.contactsIcon.setOnClickListener {
             navigateTo(SaveContactAccountActivity::class.java)
         }
         binding.productsIcon.setOnClickListener {
@@ -63,11 +63,8 @@ class MainScreenActivity : AppCompatActivity(),
         binding.settingsIcon.setOnClickListener {
             navigateTo(SettingsActivity::class.java)
         }
-        binding.statementButton.setOnClickListener {
-            navigateTo(StatementActivity::class.java)
-        }
-        binding.contactsText.setOnClickListener {
-            navigateTo(ContactListActivity::class.java)
+        binding.profilePic.setOnClickListener {
+            navigateTo(UserDetails::class.java)
         }
     }
 
@@ -99,8 +96,9 @@ class MainScreenActivity : AppCompatActivity(),
                 val lastName = document.getString("toUserLastName") ?: "No Last Name"
                 val transferId = document.getString("transferId") ?: "No transfer ID"
                 val transactionType = document.getString("transactionType") ?: "SENT"
+                val dateOfTransaction = document.getLong("dateOfTransaction") ?: 10122000
                 transactionList.add(
-                    Transaction(amount = amount, dateOfTransaction = 0, toUserId = userId,
+                    Transaction(amount = amount, dateOfTransaction = dateOfTransaction, toUserId = userId,
                     toUserName = name, toUserLastName = lastName, transferId = transferId, transactionType = transactionType)
                 )
             }
@@ -112,11 +110,10 @@ class MainScreenActivity : AppCompatActivity(),
 
     private fun setupRecyclerView(contactList: MutableList<User>) {
         contactAdapter = ContactAdapter(contactList, this)
-        Log.d(TAG, "cliquei $contactList")
+        Log.d(TAG, "click $contactList")
         binding.recyclerContacts.adapter = contactAdapter
         binding.recyclerContacts.layoutManager = LinearLayoutManager(this@MainScreenActivity)
     }
-
     @SuppressLint("NotifyDataSetChanged")
     private fun fetchContacts() {
         //get user data from db.
@@ -126,10 +123,8 @@ class MainScreenActivity : AppCompatActivity(),
                 val name = document.getString("userFirstName") ?: "No Name"
                 val email = document.getString("email") ?: "No Email"
                 val lastName = document.getString("userLastName") ?: "No Last Name"
-                val accountId = document.getString("accountId") ?: "No account ID"
                 val profilePic = document.getString("profilePic") ?: "No Profile Pic"
-                contactList.add(User(userId, name, lastName, email, accountId, profilePic))
-                Log.d(TAG, "profile = $profilePic") //getting images but link expired.
+                contactList.add(User(userId, name, lastName, email, profilePic))
             }
             setupRecyclerView(contactList)
         }
@@ -162,13 +157,13 @@ class MainScreenActivity : AppCompatActivity(),
                 Log.d(TAG, "error exception = ${exception.message}")
             }
     }
+    @SuppressLint("SetTextI18n")
     private fun displayBalance(balance: String) {
-        binding.balanceValue.text = balance
+        binding.balanceText.text = "€$balance"
     }
 
     override fun onItemClick(user: User) {
         val intent = Intent(this, ContactListActivity::class.java)
-        Log.d(TAG, "cliquei $intent")
         startActivity(intent)
     }
 
@@ -176,4 +171,16 @@ class MainScreenActivity : AppCompatActivity(),
         val intent = Intent(this, StatementActivity::class.java)
         startActivity(intent)
     }
-}
+    @SuppressLint("SetTextI18n")
+    private fun getUserData(userId: String) {
+        db.collection("users")
+            .document(userId)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                val profilePic = snapshot.data?.get("profilePic")
+                val userName = snapshot.data?.get("userFirstName")
+                binding.welcomeText.text = "Welcome, ${userName.toString()}"
+                binding.profilePic.loadImage(profilePic.toString())
+            }
+        }
+    }
