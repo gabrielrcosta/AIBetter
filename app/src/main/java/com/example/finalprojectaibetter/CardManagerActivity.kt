@@ -39,14 +39,14 @@ class CardManagerActivity : AppCompatActivity() {
         binding.settingsIcon.setOnClickListener {
             navigateTo(SettingsActivity::class.java)
         }
-        //binding.freezeCard.setOnClickListener {
-          //  val textViewVisibility = binding.frozenCardText
-            //if (textViewVisibility.visibility == View.VISIBLE) {
-              //  textViewVisibility.visibility = View.INVISIBLE
-            //} else {
-             //   textViewVisibility.visibility = View.VISIBLE
-            //}
-        //}
+        binding.freezeCard.setOnClickListener {
+            val textViewVisibility = binding.frozenCardText
+            if (textViewVisibility.visibility == View.VISIBLE) {
+                textViewVisibility.visibility = View.INVISIBLE
+            } else {
+                textViewVisibility.visibility = View.VISIBLE
+            }
+        }
         binding.replaceCard.setOnClickListener {
             val overlay = binding.overlayLayout
             overlay.visibility = View.VISIBLE
