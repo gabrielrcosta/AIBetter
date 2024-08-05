@@ -2,10 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="ultra_violet">#4D204D</color>
+    <color name="ultra_violet">#fff2ff</color>
     <color name="even_darker_purple">#1a001a</color>
     <color name="gray">#EDEDED</color>
     <color name="african_violet">#330033</color>
     <color name="gray_theme">#b6b2bd</color>
-    <color name="gray_light">#F6F6F6</color>
+    <color name="gray_light">#9993a0</color>
 </resources>
