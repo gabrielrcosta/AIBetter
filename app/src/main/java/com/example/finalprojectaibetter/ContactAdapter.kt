@@ -1,5 +1,6 @@
 package com.example.finalprojectaibetter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +12,13 @@ class ContactAdapter(private val contactsList: MutableList<User>, private val li
     RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
 
     class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val firstName: TextView = itemView.findViewById(R.id.first_name)
-        val lastName: TextView = itemView.findViewById(R.id.last_name)
-        val roundImageView : RoundImageView = itemView.findViewById(R.id.round_image_view)
+        private val firstName: TextView = itemView.findViewById(R.id.first_name)
+        private val roundImageView : RoundImageView = itemView.findViewById(R.id.round_image_view)
 
+        @SuppressLint("SetTextI18n")
         fun bind(user: User, listener: OnItemClickListener) {
-            firstName.text = user.userFirstName
+            firstName.text = "${user.userFirstName} ${user.userLastName}"
+            roundImageView.loadImage(user.profilePic)
             itemView.setOnClickListener {
                 listener.onItemClick(user)
             }
@@ -31,9 +33,6 @@ class ContactAdapter(private val contactsList: MutableList<User>, private val li
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val contact = contactsList[position]
         holder.bind(user = contact, listener)
-        holder.firstName.text = contact.userFirstName
-        holder.lastName.text = contact.userLastName
-        holder.roundImageView.loadImage(contact.profilePic)
     }
 
     override fun getItemCount(): Int = contactsList.size
@@ -41,5 +40,4 @@ class ContactAdapter(private val contactsList: MutableList<User>, private val li
     interface OnItemClickListener {
         fun onItemClick(user: User)
     }
-
 }
