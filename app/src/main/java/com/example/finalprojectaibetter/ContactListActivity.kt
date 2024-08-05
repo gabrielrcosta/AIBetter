@@ -1,12 +1,13 @@
 package com.example.finalprojectaibetter
 
 import android.annotation.SuppressLint
-import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalprojectaibetter.Model.User
 import com.example.finalprojectaibetter.databinding.ActivityContactListBinding
@@ -14,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class ContactListActivity : AppCompatActivity() {
+class ContactListActivity : AppCompatActivity(), ContactListAdapter.OnContactItemClickListener {
 
     private lateinit var binding: ActivityContactListBinding
     private lateinit var contactAdapter: ContactListAdapter
@@ -30,7 +31,7 @@ class ContactListActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(contactList: MutableList<User>) {
-        contactAdapter = ContactListAdapter(contactList)
+        contactAdapter = ContactListAdapter(contactList, this)
         binding.recyclerViewContactList.apply {
             layoutManager = LinearLayoutManager(this@ContactListActivity)
             adapter = contactAdapter
@@ -39,22 +40,20 @@ class ContactListActivity : AppCompatActivity() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun fetchContacts() {
-        // Aqui você busca os dados dos usuários, convertendo os documentos do Firestore em objetos User
+        // get user data, converting database data in users
         db.collection("users").document(userId).collection("Contact").get().addOnSuccessListener { snapshot ->
             snapshot.forEach { document ->
                 val userId = document.getString("userId") ?: "No User ID"
                 val name = document.getString("userFirstName") ?: "No Name"
                 val email = document.getString("email") ?: "No Email"
                 val lastName = document.getString("userLastName") ?: "No Last Name"
-                val accountId = document.getString("accountId") ?: "No account ID"
                 val profilePic = document.getString("profilePic") ?: "No Profile Pic"
-                contactList.add(User(userId, name, lastName, email, accountId, profilePic))
-                Log.d(ContentValues.TAG, "profile = $profilePic") //getting images but link expired.
+                contactList.add(User(userId, name, lastName, email, profilePic))
             }
             setupRecyclerView(contactList)
         }
             .addOnFailureListener { exception ->
-                Log.e(ContentValues.TAG, "Error fetching users: ", exception)
+                Toast.makeText(this, "Error fetching users", Toast.LENGTH_SHORT).show()
             }
     }
     private fun Context.navigateTo(destination: Class<*>) {
@@ -76,5 +75,14 @@ class ContactListActivity : AppCompatActivity() {
         binding.tranfersIcon.setOnClickListener {
             navigateTo(TransferActivity::class.java)
         }
+    }
+    override fun onContactItemClick(contact: User) {
+        val intent = Intent(this, TransferActivity::class.java).apply {
+            putExtra("USER_ID", contact.userId)
+            putExtra("USER_NAME", contact.userFirstName)
+            putExtra("USER_LAST_NAME", contact.userLastName)
+            Log.d(TAG, "${contact.userId} ${contact.userFirstName}" )
+        }
+        startActivity(intent)
     }
 }
