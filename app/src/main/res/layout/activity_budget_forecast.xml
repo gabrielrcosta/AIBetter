@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background11"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context=".BudgetForecastActivity">
 
     <ImageView
         android:id="@+id/close_arrow"
@@ -11,68 +14,124 @@
         android:layout_height="wrap_content"
         android:src="@drawable/new_close_arrow"
         android:layout_margin="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:contentDescription="@string/closing_arrow_back_to_main_menu" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:visibility="invisible" />
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+        android:id="@+id/round_card"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="@color/gray_theme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+        android:id="@+id/circularRevealCardView"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginHorizontal="30dp"
+        android:backgroundTint="@color/gray_light"
+        app:layout_constraintEnd_toEndOf="@+id/round_card"
+        app:layout_constraintStart_toStartOf="@+id/round_card"
+        app:layout_constraintTop_toTopOf="@+id/round_card" />
 
     <EditText
         android:id="@+id/initialAmount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="4dp"
+        android:autofillHints="Amount you got in the savings at the moment"
         android:hint="@string/initial_amount"
-        android:textStyle="bold"
+        android:textAlignment="center"
+        android:inputType="numberDecimal"
+        android:background="@color/gray_light"
         android:textColor="@color/african_violet"
         android:textColorHint="@color/african_violet"
-        android:inputType="numberDecimal"
-        android:autofillHints="" />
+        app:layout_constraintBottom_toBottomOf="@+id/circularRevealCardView"
+        app:layout_constraintEnd_toEndOf="@+id/circularRevealCardView"
+        app:layout_constraintStart_toStartOf="@+id/circularRevealCardView"
+        app:layout_constraintTop_toTopOf="@+id/circularRevealCardView" />
+
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+        android:id="@+id/circularRevealCardView2"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/gray_light"
+        app:layout_constraintEnd_toEndOf="@+id/circularRevealCardView"
+        app:layout_constraintStart_toStartOf="@+id/circularRevealCardView"
+        app:layout_constraintTop_toBottomOf="@+id/circularRevealCardView" />
 
     <EditText
         android:id="@+id/monthlySavings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autofillHints="Average amount you will save per month"
         android:hint="@string/monthly_savings"
-        android:textColor="@color/african_violet"
-        android:textStyle="bold"
-        android:textColorHint="@color/african_violet"
+        android:textAlignment="center"
         android:inputType="numberDecimal"
-        android:autofillHints="" />
+        android:textColor="@color/african_violet"
+        android:textColorHint="@color/african_violet"
+        app:layout_constraintBottom_toBottomOf="@+id/circularRevealCardView2"
+        app:layout_constraintEnd_toEndOf="@+id/circularRevealCardView2"
+        app:layout_constraintStart_toStartOf="@+id/circularRevealCardView2"
+        app:layout_constraintTop_toTopOf="@+id/circularRevealCardView2" />
+
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+        android:id="@+id/circularRevealCardView3"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/gray_light"
+        app:layout_constraintEnd_toEndOf="@+id/circularRevealCardView2"
+        app:layout_constraintStart_toStartOf="@+id/circularRevealCardView2"
+        app:layout_constraintTop_toBottomOf="@+id/circularRevealCardView2" />
 
     <EditText
         android:id="@+id/forecastMonths"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autofillHints="For how long in months you need the forecast"
         android:hint="@string/forecast_period_months"
-        android:textColor="@color/african_violet"
-        android:textStyle="bold"
-        android:textColorHint="@color/african_violet"
         android:inputType="number"
-        android:autofillHints="" />
+        android:textColor="@color/african_violet"
+        android:textColorHint="@color/african_violet"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/circularRevealCardView3"
+        app:layout_constraintEnd_toEndOf="@+id/circularRevealCardView3"
+        app:layout_constraintStart_toStartOf="@+id/circularRevealCardView3"
+        app:layout_constraintTop_toTopOf="@+id/circularRevealCardView3" />
 
     <Button
         android:id="@+id/calculateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:padding="16dp"
         android:text="@string/calculate_forecast"
-        android:layout_gravity="center"/>
+        app:layout_constraintBottom_toBottomOf="@+id/round_card"
+        app:layout_constraintEnd_toEndOf="@+id/round_card"
+        app:layout_constraintStart_toStartOf="@+id/round_card"
+        app:layout_constraintTop_toBottomOf="@+id/circularRevealCardView3" />
 
     <TextView
         android:id="@+id/forecastResult"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginHorizontal="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="30dp"
+        android:text="@string/forecast_result_will_appear_here"
         android:textAlignment="center"
         android:textColor="@color/african_violet"
-        android:background="@color/gray"
         android:textSize="20sp"
-        android:text="@string/forecast_result_will_appear_here"
-        android:layout_gravity="center"/>
+        app:layout_constraintBottom_toBottomOf="@+id/round_card"
+        app:layout_constraintEnd_toEndOf="@+id/round_card"
+        app:layout_constraintStart_toStartOf="@+id/round_card"
+        app:layout_constraintTop_toBottomOf="@+id/calculateButton" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,53 +5,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/aibetterlogo"
-    tools:context=".MainActivity">
+    android:background="@drawable/background11"
+    tools:context=".Login">
+
+    <TextView
+        android:id="@+id/sign_up_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:textColor="@color/african_violet"
+        android:textSize="70sp"
+        android:textStyle="bold"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+        android:id="@+id/card_center"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:backgroundTint="@color/gray_theme"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_text" />
+
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+        android:id="@+id/card_email_login"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginHorizontal="30dp"
+        android:backgroundTint="@color/gray_light"
+        app:layout_constraintEnd_toEndOf="@id/card_center"
+        app:layout_constraintStart_toStartOf="@id/card_center"
+        app:layout_constraintTop_toTopOf="@+id/card_center" />
 
     <EditText
         android:id="@+id/reg_number"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:autofillHints="Registration number goes here"
+        android:layout_height="0dp"
+        android:layout_margin="4dp"
+        android:autofillHints="email goes here"
         android:hint="@string/e_mail"
         android:inputType="text"
-        android:textAlignment="center"
-        android:textColor="@color/even_darker_purple"
+        android:textColor="@color/african_violet"
         android:textColorHint="@color/african_violet"
-        app:layout_constraintBottom_toTopOf="@+id/password_editable"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/gray_light"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@id/card_email_login"
+        app:layout_constraintEnd_toEndOf="@id/card_email_login"
+        app:layout_constraintStart_toStartOf="@id/card_email_login"
+        app:layout_constraintTop_toTopOf="@+id/card_email_login"
         tools:ignore="TextFields" />
+
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+        android:id="@+id/card_password_login"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/gray_light"
+        app:layout_constraintEnd_toEndOf="@id/card_email_login"
+        app:layout_constraintStart_toStartOf="@id/card_email_login"
+        app:layout_constraintTop_toBottomOf="@+id/card_email_login" />
 
     <EditText
         android:id="@+id/password_editable"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
+        android:layout_height="0dp"
+        android:layout_margin="4dp"
         android:autofillHints="password goes here"
         android:hint="@string/password"
         android:inputType="numberPassword"
         android:textAlignment="center"
-        android:textColor="@color/even_darker_purple"
+        android:background="@color/gray_light"
+        android:textColor="@color/african_violet"
         android:textColorHint="@color/african_violet"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/card_password_login"
+        app:layout_constraintEnd_toEndOf="@id/card_password_login"
+        app:layout_constraintBottom_toBottomOf="@id/card_password_login"
+        app:layout_constraintStart_toStartOf="@id/card_password_login" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="100dp"
         android:text="@string/login"
         android:textAlignment="center"
         android:textColorHint="@color/gray"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="@+id/card_password_login"
+        app:layout_constraintStart_toStartOf="@+id/card_password_login"
+        app:layout_constraintTop_toBottomOf="@+id/card_password_login" />
 
     <TextView
         android:id="@+id/textView2"
@@ -77,6 +124,5 @@
         app:layout_constraintBottom_toBottomOf="@id/textView2"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="@+id/textView2" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

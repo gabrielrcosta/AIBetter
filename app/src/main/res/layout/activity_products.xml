@@ -3,21 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background11"
+    android:background="@color/gray_theme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProductsActivity">
-
-    <Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:titleMarginStart="156dp"
-        android:title="@string/title_products"
-        android:titleTextColor="@color/african_violet"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/budget_button"
@@ -28,11 +17,11 @@
         android:textColor="@color/white"
         android:textSize="26sp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.254" />
 
     <ImageView
@@ -43,7 +32,6 @@
         android:layout_marginBottom="20dp"
         android:contentDescription="@string/sequence_of_several_icons"
         android:src="@drawable/baseline_euro_symbol_24"
-        android:background="@color/gray"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toStartOf="@id/current_account_text"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,25 +39,32 @@
 
     <TextView
         android:id="@+id/current_account_text"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/current_account"
         android:textAlignment="viewStart"
-        android:background="@color/gray"
         android:textColor="@color/african_violet"
         android:textStyle="bold"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/current_account_icon"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/current_account_icon"
         app:layout_constraintTop_toTopOf="@+id/current_account_icon" />
+
+    <TextView
+        android:id="@+id/coming_soon1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:text="@string/coming_soon"
+        app:layout_constraintBottom_toBottomOf="@+id/current_account_text"
+        app:layout_constraintStart_toEndOf="@+id/current_account_text"
+        app:layout_constraintTop_toTopOf="@+id/current_account_text" />
 
     <ImageView
         android:id="@+id/borrow_icon"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:src="@drawable/new_pix_24"
-        android:background="@color/gray"
         android:layout_marginBottom="20dp"
         app:layout_constraintEnd_toStartOf="@+id/current_account_text"
         app:layout_constraintStart_toStartOf="@+id/current_account_icon"
@@ -78,18 +73,26 @@
 
     <TextView
         android:id="@+id/borrow_text"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/borrow"
         android:textAlignment="viewStart"
         android:textColor="@color/african_violet"
         android:textStyle="bold"
         android:textSize="24sp"
-        android:background="@color/gray"
         app:layout_constraintBottom_toBottomOf="@+id/borrow_icon"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/borrow_icon"
         app:layout_constraintTop_toTopOf="@+id/borrow_icon" />
+
+    <TextView
+        android:id="@+id/coming_soon2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:text="@string/coming_soon"
+        app:layout_constraintStart_toEndOf="@id/borrow_text"
+        app:layout_constraintTop_toTopOf="@id/borrow_text"
+        app:layout_constraintBottom_toBottomOf="@id/borrow_text" />
 
     <ImageView
         android:id="@+id/credit_card_icon"
@@ -97,7 +100,6 @@
         android:layout_height="36dp"
         android:src="@drawable/new_credit_card_24"
         android:layout_marginBottom="20dp"
-        android:background="@color/gray"
         app:layout_constraintEnd_toEndOf="@+id/borrow_icon"
         app:layout_constraintStart_toStartOf="@id/borrow_icon"
         app:layout_constraintTop_toBottomOf="@+id/borrow_icon"
@@ -105,18 +107,26 @@
 
     <TextView
         android:id="@+id/credit_card_text"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/credit_card"
         android:textAlignment="viewStart"
         android:textColor="@color/african_violet"
         android:textStyle="bold"
         android:textSize="24sp"
-        android:background="@color/gray"
         app:layout_constraintTop_toTopOf="@id/credit_card_icon"
         app:layout_constraintBottom_toBottomOf="@+id/credit_card_icon"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/credit_card_icon" />
+
+    <TextView
+        android:id="@+id/coming_soon3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:text="@string/coming_soon"
+        app:layout_constraintStart_toEndOf="@id/credit_card_text"
+        app:layout_constraintTop_toTopOf="@id/credit_card_text"
+        app:layout_constraintBottom_toBottomOf="@id/credit_card_text"/>
 
     <ImageView
         android:id="@+id/mortgage_icon"
@@ -124,7 +134,6 @@
         android:layout_height="36dp"
         android:src="@drawable/new_house_24"
         android:layout_marginBottom="20dp"
-        android:background="@color/gray"
         app:layout_constraintEnd_toEndOf="@+id/credit_card_icon"
         app:layout_constraintStart_toStartOf="@+id/credit_card_icon"
         app:layout_constraintTop_toBottomOf="@+id/credit_card_icon"
@@ -132,71 +141,59 @@
 
     <TextView
         android:id="@+id/mortgage_text"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/mortgage"
         android:textAlignment="viewStart"
         android:textColor="@color/african_violet"
         android:textStyle="bold"
         android:textSize="24sp"
-        android:background="@color/gray"
         app:layout_constraintBottom_toBottomOf="@+id/mortgage_icon"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/mortgage_icon"
         app:layout_constraintTop_toTopOf="@+id/mortgage_icon" />
 
-    <ImageView
-        android:id="@+id/savings_icon"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:src="@drawable/new_savings_24"
-        android:layout_marginBottom="20dp"
-        android:background="@color/gray"
-        app:layout_constraintEnd_toEndOf="@+id/mortgage_icon"
-        app:layout_constraintStart_toStartOf="@+id/mortgage_icon"
-        app:layout_constraintTop_toBottomOf="@+id/mortgage_icon"
-        android:contentDescription="@string/sequence_of_several_icons" />
-
     <TextView
-        android:id="@+id/savings_text"
-        android:layout_width="0dp"
+        android:id="@+id/coming_soon4"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/savings"
-        android:textAlignment="viewStart"
-        android:textColor="@color/african_violet"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        android:background="@color/gray"
-        app:layout_constraintBottom_toBottomOf="@+id/savings_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/savings_icon"
-        app:layout_constraintTop_toTopOf="@+id/savings_icon" />
+        android:layout_marginHorizontal="10dp"
+        android:text="@string/coming_soon"
+        app:layout_constraintStart_toEndOf="@id/mortgage_text"
+        app:layout_constraintTop_toTopOf="@id/mortgage_text"
+        app:layout_constraintBottom_toBottomOf="@id/mortgage_text"/>
 
     <ImageView
         android:id="@+id/insurance_icon"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:src="@drawable/insurance_icon"
-        android:background="@color/gray"
-        app:layout_constraintEnd_toEndOf="@+id/savings_icon"
-        app:layout_constraintStart_toStartOf="@+id/savings_icon"
-        app:layout_constraintTop_toBottomOf="@+id/savings_icon"
+        app:layout_constraintEnd_toEndOf="@+id/mortgage_icon"
+        app:layout_constraintStart_toStartOf="@+id/mortgage_icon"
+        app:layout_constraintTop_toBottomOf="@+id/mortgage_icon"
         android:contentDescription="@string/sequence_of_several_icons" />
 
     <TextView
         android:id="@+id/insurance_text"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/insurance"
         android:textAlignment="viewStart"
         android:textColor="@color/african_violet"
         android:textStyle="bold"
         android:textSize="24sp"
-        android:background="@color/gray"
         app:layout_constraintBottom_toBottomOf="@+id/insurance_icon"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/insurance_icon"
         app:layout_constraintTop_toTopOf="@+id/insurance_icon" />
+
+    <TextView
+        android:id="@+id/coming_soon5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:text="@string/coming_soon"
+        app:layout_constraintStart_toEndOf="@id/insurance_text"
+        app:layout_constraintTop_toTopOf="@id/insurance_text"
+        app:layout_constraintBottom_toBottomOf="@id/insurance_text"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"

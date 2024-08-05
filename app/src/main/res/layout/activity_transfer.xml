@@ -8,6 +8,17 @@
     android:background="@drawable/background11"
     tools:context=".TransferActivity">
 
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+        android:id="@+id/card_center"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:backgroundTint="@color/gray_theme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/close_arrow"
         android:layout_width="wrap_content"
@@ -23,63 +34,73 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/how_much_text"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textColor="@color/african_violet"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/close_arrow" />
+        app:layout_constraintEnd_toEndOf="@id/card_center"
+        app:layout_constraintStart_toStartOf="@id/card_center"
+        app:layout_constraintTop_toTopOf="@+id/card_center" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/balance_text_att"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
         android:text="@string/balance_text"
         android:textAlignment="textStart"
         android:textColor="@color/african_violet"
         app:layout_constraintStart_toStartOf="@+id/transfer_text"
         app:layout_constraintTop_toBottomOf="@+id/transfer_text" />
 
-    <TextView
-        android:id="@+id/balance_text_att"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/_1000"
-        android:textColor="@color/african_violet"
-        android:layout_margin="6dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+        android:id="@+id/card_amount"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/gray_light"
+        app:layout_constraintEnd_toEndOf="@+id/card_center"
+        app:layout_constraintStart_toStartOf="@+id/card_center"
+        app:layout_constraintTop_toBottomOf="@+id/balance_text_att" />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="10dp"
+        android:autofillHints="TODO"
         android:hint="@string/amount_hint"
         android:inputType="numberDecimal"
         android:textAlignment="textStart"
         android:textColor="@color/african_violet"
         android:textColorHint="@color/african_violet"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:autofillHints="TODO" />
+        app:layout_constraintBottom_toBottomOf="@+id/card_amount"
+        app:layout_constraintEnd_toEndOf="@+id/card_amount"
+        app:layout_constraintStart_toStartOf="@+id/card_amount"
+        app:layout_constraintTop_toTopOf="@+id/card_amount" />
+
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+        android:id="@+id/card_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/gray_light"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/card_center"
+        app:layout_constraintEnd_toEndOf="@+id/card_center"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
     <ImageView
         android:id="@+id/transfer_confirm_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="40dp"
         android:background="@drawable/baseline_arrow_forward_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        android:contentDescription="@string/confirmation_arrow" />
+        android:contentDescription="@string/confirmation_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/card_button"
+        app:layout_constraintEnd_toEndOf="@id/card_button"
+        app:layout_constraintStart_toStartOf="@+id/card_button"
+        app:layout_constraintTop_toTopOf="@+id/card_button" />
 
     <LinearLayout
         android:id="@+id/linearLayout"

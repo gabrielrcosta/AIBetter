@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/gray_theme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainScreenActivity">
@@ -19,113 +20,138 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
+            <View
+                android:id="@+id/balance_card"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:background="@drawable/aibetterlogo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <com.example.finalprojectaibetter.RoundImageView
+                android:id="@+id/profile_pic"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/welcome_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="Welcome, User"
+                android:textColor="@color/african_violet"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_pic"
+                app:layout_constraintStart_toEndOf="@+id/profile_pic"
+                app:layout_constraintTop_toTopOf="@id/profile_pic" />
+
             <TextView
                 android:id="@+id/balance_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="40dp"
                 android:text="@string/balance"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/african_violet"
                 android:textAlignment="center"
+                android:textColor="@color/african_violet"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintBottom_toBottomOf="@+id/balance_card"
+                app:layout_constraintEnd_toEndOf="@id/balance_card"
+                app:layout_constraintStart_toStartOf="@id/balance_card"/>
+
+            <ImageView
+                android:id="@+id/contacts_icon"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/contacts_icon"
+                app:layout_constraintBottom_toTopOf="@+id/textView"
+                app:layout_constraintEnd_toEndOf="@+id/balance_card"
+                android:contentDescription="button loads activity to add a new contact" />
 
             <TextView
-                android:id="@+id/balance_value"
-                android:layout_width="0dp"
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/_1000"
                 android:textColor="@color/african_violet"
-                android:textSize="30sp"
+                android:text="NewContact"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/balance_text" />
+                app:layout_constraintBottom_toTopOf="@id/card_for_nothing"
+                app:layout_constraintEnd_toEndOf="@id/contacts_icon"
+                app:layout_constraintStart_toStartOf="@id/contacts_icon" />
 
-            <androidx.cardview.widget.CardView
+
+            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
                 android:id="@+id/card_for_nothing"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/even_darker_purple"
-                android:visibility="invisible"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_marginHorizontal="6dp"
+                android:layout_marginVertical="30dp"
+                android:backgroundTint="@color/gray_light"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/balance_value" />
-
-            <Button
-                android:id="@+id/statement_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:text="@string/statement"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@id/card_for_nothing"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@+id/balance_text" />
 
             <TextView
                 android:id="@+id/recent_transactions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
                 android:text="@string/recent_tranfers"
-                android:background="@color/gray"
-                android:textStyle="bold"
                 android:textAlignment="center"
                 android:textColor="@color/african_violet"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintTop_toBottomOf="@id/statement_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/card_for_nothing"
+                app:layout_constraintStart_toStartOf="@+id/card_for_nothing"
+                app:layout_constraintTop_toTopOf="@+id/card_for_nothing" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_recent_transfers"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/recent_transactions"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/card_for_nothing"
+                app:layout_constraintEnd_toEndOf="@+id/card_for_nothing"
+                app:layout_constraintStart_toStartOf="@+id/card_for_nothing"
+                app:layout_constraintTop_toBottomOf="@+id/recent_transactions" />
 
-            <Button
-                android:id="@+id/add_contact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginVertical="10dp"
-                android:text="@string/add_a_contact"
-                android:textColor="@color/white"
-                android:textSize="20sp"
+            <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+                android:id="@+id/card_contacts"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_marginHorizontal="6dp"
+                android:layout_marginVertical="20dp"
+                android:backgroundTint="@color/gray_light"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recycler_recent_transfers" />
+                app:layout_constraintTop_toBottomOf="@+id/card_for_nothing" />
 
-            <Button
-                android:id="@+id/contacts_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginBottom="10dp"
+            <TextView
+                android:id="@+id/contacts"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
                 android:text="@string/contacts"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/add_contact"/>
+                android:textColor="@color/african_violet"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/card_contacts"
+                app:layout_constraintStart_toStartOf="@+id/card_contacts"
+                app:layout_constraintTop_toTopOf="@+id/card_contacts" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_contacts"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contacts_text"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/card_contacts"
+                app:layout_constraintEnd_toEndOf="@id/card_contacts"
+                app:layout_constraintStart_toStartOf="@+id/card_contacts"
+                app:layout_constraintTop_toBottomOf="@+id/contacts" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
