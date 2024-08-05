@@ -1,32 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/gray"
     android:padding="5dp"
     android:layout_margin="4dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        style="@style/Widget.MaterialComponents.Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
         <com.example.finalprojectaibetter.RoundImageView
             android:id="@+id/round_image_view"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_margin="15dp"
-            android:src="@drawable/outline_image" />
+            android:src="@drawable/aibetterlogo" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
                 <TextView
                     android:id="@+id/first_name"
@@ -39,15 +30,5 @@
                     android:textStyle="bold"
                     android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/last_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/gabriel"
-                    android:textStyle="bold"
-                    android:textColor="@color/african_violet"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
