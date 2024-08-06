@@ -21,6 +21,7 @@ class SaveContactAccountActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySaveContactAccountBinding
     private var db = Firebase.firestore
     private val userId by lazy { FirebaseAuth.getInstance().currentUser?.uid.orEmpty() }
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,44 +33,35 @@ class SaveContactAccountActivity : AppCompatActivity() {
             }
 
             searchButton.setOnClickListener {
-                val userId = userEditText.text.toString()
+                val searchUserId = userEditText.text.toString()
                 db.collection("users")
-                    .whereEqualTo("userId", userId)
+                    .whereEqualTo("userId", searchUserId)
                     .get()
                     .addOnSuccessListener { documents ->
                         if (documents.isEmpty) {
                             messageOnSuccess.visibility = View.GONE
                             messageOnFailure.apply {
+                                text = "User not found."
                                 visibility = View.VISIBLE
-                                text = "User is already a contact."
                             }
                         } else {
-                            messageOnFailure.visibility = View.GONE
-                            for (document in documents) {
-                                val userName = document.data["userFirstName"]
-                                val lastName = document.data["userLastName"]
-                                messageOnSuccess.apply {
-                                    visibility = View.VISIBLE
-                                    text = "Would you like to add $userName $lastName as a contact?"
-                                }
-                                addContactButton.setOnClickListener {
-                                    checkIfContactExists(document.id, document.data)
-                                    Log.d(TAG, "document data = ${document.data}")
-                                }
-                            }
+                            val document = documents.documents[0]
+                            checkIfContactExists(document.id, document.data!!)
                         }
                     }
                     .addOnFailureListener {
                         messageOnSuccess.visibility = View.GONE
                         Log.d(TAG, "Error getting documents: ", it)
                         messageOnFailure.apply {
+                            text = "Error finding user."
                             visibility = View.VISIBLE
-                            Handler(Looper.getMainLooper()).postDelayed({ visibility = View.GONE } , 4000)
+                            Handler(Looper.getMainLooper()).postDelayed({ visibility = View.GONE }, 4000)
                         }
                     }
             }
         }
     }
+
     private fun Context.navigateTo(destination: Class<*>) {
         startActivity(Intent(this, destination))
     }
@@ -84,16 +76,25 @@ class SaveContactAccountActivity : AppCompatActivity() {
             .addOnSuccessListener { document ->
                 if (document.exists()) {
                     binding.messageOnFailure.apply {
+                        text = "User is already a contact."
                         visibility = View.VISIBLE
-                        Handler(Looper.getMainLooper()).postDelayed({ visibility = View.GONE } , 4000)
+                        Handler(Looper.getMainLooper()).postDelayed({ visibility = View.GONE }, 4000)
                     }
                 } else {
-                    addContact(user, documentId)
-                    Handler(Looper.getMainLooper()).postDelayed({navigateTo(MainScreenActivity::class.java)} , 2000)
+                    val userName = user["userFirstName"] as String
+                    val lastName = user["userLastName"] as String
+                    binding.messageOnSuccess.apply {
+                        visibility = View.VISIBLE
+                        text = "Would you like to add $userName $lastName as a contact?"
+                    }
+                    binding.addContactButton.setOnClickListener {
+                        addContact(user, documentId)
+                        Handler(Looper.getMainLooper()).postDelayed({ navigateTo(MainScreenActivity::class.java) }, 2000)
+                    }
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(this, "User not Found", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error checking if contact exists", Toast.LENGTH_SHORT).show()
                 Log.d(TAG, "Error checking if contact exists: ", it)
             }
     }
@@ -104,5 +105,12 @@ class SaveContactAccountActivity : AppCompatActivity() {
             .collection("Contact")
             .document(documentId)
             .set(user)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Contact added successfully", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Error adding contact", Toast.LENGTH_SHORT).show()
+                Log.d(TAG, "Error adding contact: ", it)
+            }
     }
 }
