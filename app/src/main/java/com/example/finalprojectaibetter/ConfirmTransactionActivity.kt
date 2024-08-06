@@ -31,62 +31,74 @@ class ConfirmTransactionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityConfirmTransactionBinding.inflate(layoutInflater).apply {
             setContentView(root)
+        }
 
-            userId = intent.getStringExtra("USER_ID") ?: ""
-            userName = intent.getStringExtra("USER_NAME") ?: ""
-            userLastName = intent.getStringExtra("USER_LAST_NAME") ?: ""
-            Log.d("ConfirmTransactionActivity", "Received userId: $userId, userName: $userName, userLastName: $userLastName")
+        initializeUI()
+    }
 
-            val finalValue = intent.getStringExtra("value") ?: "0"
-            selectedUserTextView.text = getString(R.string.sending_amount, finalValue, " ")
+    private fun initializeUI() {
+        userId = intent.getStringExtra("USER_ID") ?: ""
+        userName = intent.getStringExtra("USER_NAME") ?: ""
+        userLastName = intent.getStringExtra("USER_LAST_NAME") ?: ""
+        Log.d(TAG, "Received userId: $userId, userName: $userName, userLastName: $userLastName")
 
-            if (userId.isNotEmpty() && userName.isNotEmpty() && userLastName.isNotEmpty()) {
-                selectedUserTextView.text = getString(R.string.sending_amount, finalValue, userName)
-                getUserById(userId) {idReceiver ->
-                    if (idReceiver != null) {
-                        Log.d("user Id agora?", idReceiver)
-                        sendMoneyButton.setOnClickListener {
-                            initiateTransferProcess(idReceiver, finalValue.toDoubleOrNull() ?: 0.0)
-                            updateUIOnSuccess(userName, finalValue.toDouble())
-                        }
-                    }
-                }
-            } else {
-                searchUserButton.setOnClickListener {
-                    val toUserId = searchUserEditText.text.toString().trim()
-                    if (toUserId.isEmpty()) {
-                        Toast.makeText(this@ConfirmTransactionActivity, "Please enter a valid user Id.", Toast.LENGTH_SHORT).show()
-                        return@setOnClickListener
-                    } else {
-                        getUserById(toUserId) { receiver ->
-                            if (receiver != null) {
-                                Log.d("user Id agora?", receiver)
-                                getUserName(receiver) { toUserName ->
-                                    selectedUserTextView.text = getString(R.string.sending_amount, finalValue, toUserName)
-                                    sendMoneyButton.setOnClickListener {
-                                        if (toUserName != null) {
-                                            initiateTransferProcess(receiver, finalValue.toDoubleOrNull() ?: 0.0)
-                                            Log.d(TAG, "name: $toUserName")
-                                            updateUIOnSuccess(userName = toUserName, amount = finalValue.toDouble())
-                                        }
-                                    }
-                                }
-                            } else {
-                                selectedUserTextView.apply {
-                                    postDelayed({
-                                        text = "You are sending $finalValue"
-                                    },3000)
-                                    text = "User not Found."
-                                }
-                                Toast.makeText(this@ConfirmTransactionActivity, "User not found.", Toast.LENGTH_SHORT).show()
-                            }
-                        }
+        val finalValue = intent.getStringExtra("value") ?: "0"
+        binding.selectedUserTextView.text = getString(R.string.sending_amount, finalValue, " ")
+
+        if (userId.isNotEmpty() && userName.isNotEmpty() && userLastName.isNotEmpty()) {
+            binding.selectedUserTextView.text = getString(R.string.sending_amount, finalValue, userName)
+            getUserById(userId) { idReceiver ->
+                if (idReceiver != null) {
+                    Log.d(TAG, "User ID: $idReceiver")
+                    binding.sendMoneyButton.setOnClickListener {
+                        initiateTransferProcess(idReceiver, finalValue.toDoubleOrNull() ?: 0.0)
+                        updateUIOnSuccess(userName, finalValue.toDouble())
                     }
                 }
             }
-            closeArrow.setOnClickListener { finish() }  //finish() to close the current activity and return to the previous one
+        } else {
+            setupSearchUser(finalValue)
+        }
+        binding.closeArrow.setOnClickListener { finish() }
+    }
+
+    private fun setupSearchUser(finalValue: String) {
+        binding.searchUserButton.setOnClickListener {
+            val toUserId = binding.searchUserEditText.text.toString().trim()
+            if (toUserId.isEmpty()) {
+                showToast("Please enter a valid user Id.")
+            } else {
+                getUserById(toUserId) { receiver ->
+                    if (receiver != null) {
+                        Log.d(TAG, "User ID: $receiver")
+                        getUserName(receiver) { toUserName ->
+                            if (toUserName != null) {
+                                binding.selectedUserTextView.text = getString(R.string.sending_amount, finalValue, toUserName)
+                                binding.sendMoneyButton.setOnClickListener {
+                                    initiateTransferProcess(receiver, finalValue.toDoubleOrNull() ?: 0.0)
+                                    updateUIOnSuccess(toUserName, finalValue.toDouble())
+                                }
+                            }
+                        }
+                    } else {
+                        showUserNotFoundMessage(finalValue)
+                    }
+                }
+            }
         }
     }
+
+    @SuppressLint("SetTextI18n")
+    private fun showUserNotFoundMessage(finalValue: String) {
+        binding.selectedUserTextView.apply {
+            postDelayed({
+                text = "You are sending $finalValue"
+            }, 3000)
+            text = "User not Found."
+        }
+        showToast("User not found.")
+    }
+
     private fun navigateTo(destination: Class<*>) {
         startActivity(Intent(this, destination))
     }
@@ -105,27 +117,28 @@ class ConfirmTransactionActivity : AppCompatActivity() {
                 onComplete(null)
             }
     }
+
     private fun performTransaction(fromUserId: String, toUserId: String, amount: Double, userName: String, userLastName: String) {
         transfer(fromUserId, toUserId, amount) { isSuccess ->
             if (isSuccess) {
                 val currentTime = System.currentTimeMillis()
                 val transactionSent = Transaction(amount, currentTime, toUserId, userName, UUID.randomUUID().toString(), userLastName, TransactionType.SENT.name)
                 saveTransferSent(transactionSent)
-                Log.d(TAG, "transactionSent: $transactionSent")
+                Log.d(TAG, "Transaction Sent: $transactionSent")
 
-                getUserName(userId = fromUserId) { fromUserName ->
-                    if (fromUserName != null) {
-                        getUserLastName(userId = fromUserId) {fromUserLastName ->
-                            if (fromUserLastName != null) {
+                getUserName(fromUserId) { fromUserName ->
+                    fromUserName?.let {
+                        getUserLastName(fromUserId) { fromUserLastName ->
+                            fromUserLastName?.let {
                                 val transactionReceived = Transaction(amount, currentTime, fromUserId, fromUserName, UUID.randomUUID().toString(), fromUserLastName, TransactionType.RECEIVED.name)
-                                Log.d(TAG, "transactionReceived: $transactionReceived")
+                                Log.d(TAG, "Transaction Received: $transactionReceived")
                                 saveTransferReceived(transactionReceived, toUserId)
                             }
                         }
                     }
                 }
             } else {
-                Toast.makeText(this, "Failed to transfer funds.", Toast.LENGTH_LONG).show()
+                showToast("Failed to transfer funds.")
             }
         }
     }
@@ -134,12 +147,12 @@ class ConfirmTransactionActivity : AppCompatActivity() {
         db.collection("users").document(userId).get().addOnSuccessListener { document ->
             val userName = document.getString("userFirstName")
             if (userName.isNullOrEmpty()) {
-                Toast.makeText(this, "User not Found.", Toast.LENGTH_SHORT).show()
+                showToast("User not Found.")
                 Log.d(TAG, "No user found for user ID $userId")
             } else {
                 onComplete(userName)
             }
-        }.addOnFailureListener {e->
+        }.addOnFailureListener { e ->
             Log.e(TAG, "Failed to fetch user name for ID $userId: ${e.message}", e)
             onComplete(null)
         }
@@ -159,19 +172,19 @@ class ConfirmTransactionActivity : AppCompatActivity() {
             onComplete(null)
         }
     }
+
     private fun initiateTransferProcess(toUserId: String, amount: Double) {
         if (amount <= 0) {
-            Toast.makeText(this, "Invalid amount.", Toast.LENGTH_LONG).show()
-            Log.d(TAG, "amount: $amount")
+            showToast("Invalid amount.")
+            Log.d(TAG, "Amount: $amount")
             return
-        } else {
-            getUserLastName(toUserId) { toUserLastName ->
-                Log.d(TAG, "toUserLastName: $toUserLastName")
-                if (toUserLastName != null) {
-                    getUserName(toUserId) {toUserName ->
-                        if (toUserName != null) {
-                            performTransaction(fromUserId, toUserId, amount, toUserName, toUserLastName)
-                        }
+        }
+
+        getUserLastName(toUserId) { toUserLastName ->
+            toUserLastName?.let {
+                getUserName(toUserId) { toUserName ->
+                    toUserName?.let {
+                        performTransaction(fromUserId, toUserId, amount, toUserName, toUserLastName)
                     }
                 }
             }
@@ -188,43 +201,42 @@ class ConfirmTransactionActivity : AppCompatActivity() {
             }, 2000)
         }
     }
+
     private fun transfer(fromUserId: String, toUserId: String, amount: Double, onComplete: (Boolean) -> Unit) {
-            val fromUserAccountRef = db.collection("users").document(fromUserId).collection("Account").document(fromUserId)
-            val toUserAccountRef = db.collection("users").document(toUserId).collection("Account").document(toUserId)
+        val fromUserAccountRef = db.collection("users").document(fromUserId).collection("Account").document(fromUserId)
+        val toUserAccountRef = db.collection("users").document(toUserId).collection("Account").document(toUserId)
 
-            db.runTransaction { transaction ->
-                val fromAccountSnapshot = transaction.get(fromUserAccountRef)
-                val toAccountSnapshot = transaction.get(toUserAccountRef)
-                Log.d(TAG, "run transaction method $fromAccountSnapshot $toAccountSnapshot")
+        db.runTransaction { transaction ->
+            val fromAccountSnapshot = transaction.get(fromUserAccountRef)
+            val toAccountSnapshot = transaction.get(toUserAccountRef)
+            Log.d(TAG, "Transaction snapshots: $fromAccountSnapshot $toAccountSnapshot")
 
-                //getting the balance of the accounts
-                val fromAccountBalance = fromAccountSnapshot.getDouble("balance") ?: error("Balance of sendind account not found")
-                val toAccountBalance = toAccountSnapshot.getDouble("balance") ?: error("Balance not found")
-                Log.d(TAG, "$fromAccountBalance $toAccountBalance")
+            val fromAccountBalance = fromAccountSnapshot.getDouble("balance") ?: error("Balance of sending account not found")
+            val toAccountBalance = toAccountSnapshot.getDouble("balance") ?: error("Balance not found")
+            Log.d(TAG, "Balances: $fromAccountBalance $toAccountBalance")
 
-                //check if the account has enough balance
-                if (fromAccountBalance < amount) {
-                    throw FirebaseFirestoreException("Insuficient Funds", FirebaseFirestoreException.Code.ABORTED)
-                }
-                //calculate new balance
-                val newFromAccountBalance = fromAccountBalance - amount
-                val newToAccountBalance = toAccountBalance + amount
-
-                //Att the balance of the involved accounts
-                transaction.update(fromUserAccountRef, "balance", newFromAccountBalance)
-                transaction.update(toUserAccountRef, "balance", newToAccountBalance)
-
-                null
+            if (fromAccountBalance < amount) {
+                throw FirebaseFirestoreException("Insufficient Funds", FirebaseFirestoreException.Code.ABORTED)
             }
-                .addOnSuccessListener {
-                    Log.d(TAG, "Success")
-                    onComplete(true) //callback success
-                }
-                .addOnFailureListener { e ->
-                Log.e(TAG, "Transfer Failed", e)
-                    onComplete(false) //callback failed
+
+            val newFromAccountBalance = fromAccountBalance - amount
+            val newToAccountBalance = toAccountBalance + amount
+
+            transaction.update(fromUserAccountRef, "balance", newFromAccountBalance)
+            transaction.update(toUserAccountRef, "balance", newToAccountBalance)
+
+            null
+        }
+            .addOnSuccessListener {
+                Log.d(TAG, "Transaction successful")
+                onComplete(true)
+            }
+            .addOnFailureListener { e ->
+                Log.e(TAG, "Transaction failed", e)
+                onComplete(false)
             }
     }
+
     private fun saveTransferSent(transaction: Transaction) {
         val transferMap = hashMapOf(
             "transferId" to transaction.transferId,
@@ -246,6 +258,7 @@ class ConfirmTransactionActivity : AppCompatActivity() {
                 Log.w(TAG, "Error adding document", exception)
             }
     }
+
     private fun saveTransferReceived(transaction: Transaction, toUserId: String) {
         val transferMap = hashMapOf(
             "transferId" to transaction.transferId,
@@ -266,5 +279,9 @@ class ConfirmTransactionActivity : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error adding document", exception)
             }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
