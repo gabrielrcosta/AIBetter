@@ -44,7 +44,7 @@
     <EditText
         android:id="@+id/search_user_edit_text"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_margin="4dp"
         android:autofillHints=""
         android:hint="@string/search_user"
