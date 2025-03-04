@@ -1,3 +1,5 @@
+Amendment - Currently working on this project migrating from XML to JetPack Compose and applying the basics of OOP.
+
 Final Project: AIBetter
 
 Overview
@@ -8,9 +10,9 @@ It leverages Firebase Firestore for backend data storage and FirebaseAuth for us
 
 Features
 
-User Authentication: Users can securely log in to access their account.
-Balance Management: Users can view their current account balance which is fetched in real-time from Firestore.
-Secure Transfers: Allows users to securely transfer money to other users within the platform.
+User Authentication: Users can securely log in to access their accounts.
+Balance Management: Users can view their current account balance, which is fetched in real time from Firestore.
+Secure Transfers: This allows users to transfer money to other users within the platform securely.
 Activity History: Users can view a detailed list of their transaction histories with the Statement easily displayed in the app.
 
 Usage
@@ -18,11 +20,11 @@ Usage
 Open the app and sign in with your credentials.
 View your current balance displayed on the main screen.
 Navigate to the transfer section to initiate a money transfer.
-Use the navigation icons to access different features such as viewing transaction history or managing account settings.
+Use the navigation icons to access different features, such as viewing transaction history or managing account settings.
 
 Built With
 
-Android Studio - The IDE used for developing the application.
+Android Studio - The IDE used to develop the application.
 Firebase Firestore - NoSQL database for storing user data and transaction records.
 Firebase Auth - Authentication service used to manage user sessions.
 
@@ -32,4 +34,4 @@ Developed by Gabriel Costa - GitHub - gabrielrcosta
 
 Acknowledgments
 
-Thanks to the instructors and peers at Dorset College for their guidance and feedback throughout the development of this project.
+Thanks to the instructors and my colleagues at Dorset College for their guidance and feedback throughout the development of this project.
